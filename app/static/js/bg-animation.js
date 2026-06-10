@@ -8,6 +8,10 @@ import * as THREE from 'three';
 const canvas = document.getElementById('bg-canvas');
 if (!canvas) throw new Error('Missing #bg-canvas element');
 
+// 初始隐藏 canvas，等第一帧渲染后再淡入，避免黑屏闪烁
+canvas.style.opacity = '0';
+canvas.style.transition = 'opacity 0.8s ease';
+
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -111,8 +115,13 @@ document.addEventListener('touchmove', (e) => {
 }, { passive: true });
 
 // ---- Animation loop ----
+let firstFrame = true;
 function animate(time) {
     requestAnimationFrame(animate);
+    if (firstFrame) {
+        firstFrame = false;
+        requestAnimationFrame(() => { canvas.style.opacity = '1'; });
+    }
     const t = time * 0.001;
     mouseX += (targetMX - mouseX) * 0.02;
     mouseY += (targetMY - mouseY) * 0.02;
