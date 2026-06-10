@@ -97,6 +97,7 @@ a:hover { color: var(--accent-hover); }
 /* ---- Three.js Canvas ---- */
 #bg-canvas {
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: #090d1a; transition: opacity 1.5s ease, background 1.5s ease;
 }
 
 /* ---- Ambient Glow Overlay ---- */
