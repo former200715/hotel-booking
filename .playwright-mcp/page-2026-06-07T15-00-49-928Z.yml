@@ -1,0 +1,30 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e5]: 
+    - heading "酒店预订管理系统" [level=4] [ref=e6]
+    - paragraph [ref=e7]: 请使用操作员账号登录
+  - generic [ref=e8]:
+    - alert [ref=e9]:
+      - text: 已退出登录
+      - button [ref=e10] [cursor=pointer]
+    - alert [ref=e11]:
+      - text: 请先登录后再进行此操作
+      - button [ref=e12] [cursor=pointer]
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e16]: 
+          - text: 用户名
+        - textbox "请输入用户名" [ref=e17]
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - generic [ref=e20]: 
+          - text: 密码
+        - textbox "请输入密码" [ref=e21]
+      - generic [ref=e22]:
+        - checkbox "记住我（7天内免登录）" [ref=e23]
+        - generic [ref=e24]: 记住我（7天内免登录）
+      - button "登 录" [ref=e26] [cursor=pointer]
+  - generic [ref=e27]:
+    - generic [ref=e28]: 
+    - text: 安全登录 - 会话加密

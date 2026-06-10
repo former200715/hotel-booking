@@ -1,0 +1,139 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - generic [ref=e4]:
+      - link " 酒店预订系统" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: 
+        - generic [ref=e8]: 酒店预订系统
+      - button "" [ref=e9] [cursor=pointer]:
+        - generic [ref=e10]: 
+    - navigation [ref=e11]:
+      - list [ref=e12]:
+        - listitem [ref=e13]:
+          - link " 控制台" [ref=e14] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e15]: 
+            - generic [ref=e16]: 控制台
+        - listitem [ref=e17]: 前台业务
+        - listitem [ref=e18]:
+          - link " 住宿登记" [ref=e19] [cursor=pointer]:
+            - /url: /frontdesk/checkin
+            - generic [ref=e20]: 
+            - generic [ref=e21]: 住宿登记
+        - listitem [ref=e22]:
+          - link " 宿费提醒" [ref=e23] [cursor=pointer]:
+            - /url: /frontdesk/reminders
+            - generic [ref=e24]: 
+            - generic [ref=e25]: 宿费提醒
+        - listitem [ref=e26]: 资产管理
+        - listitem [ref=e27]:
+          - link " 客房管理" [ref=e28] [cursor=pointer]:
+            - /url: /rooms/
+            - generic [ref=e29]: 
+            - generic [ref=e30]: 客房管理
+        - listitem [ref=e31]:
+          - link " 订单管理" [ref=e32] [cursor=pointer]:
+            - /url: /bookings/
+            - generic [ref=e33]: 
+            - generic [ref=e34]: 订单管理
+        - listitem [ref=e35]:
+          - link " 挂账管理" [ref=e36] [cursor=pointer]:
+            - /url: /credits/
+            - generic [ref=e37]: 
+            - generic [ref=e38]: 挂账管理
+        - listitem [ref=e39]: 查询统计
+        - listitem [ref=e40]:
+          - link " 数据统计" [ref=e41] [cursor=pointer]:
+            - /url: /query/stats
+            - generic [ref=e42]: 
+            - generic [ref=e43]: 数据统计
+        - listitem [ref=e44]:
+          - link " 订单查询" [ref=e45] [cursor=pointer]:
+            - /url: /query/bookings
+            - generic [ref=e46]: 
+            - generic [ref=e47]: 订单查询
+        - listitem [ref=e48]: 系统管理
+        - listitem [ref=e49]:
+          - link " 操作员管理" [ref=e50] [cursor=pointer]:
+            - /url: /admin/users
+            - generic [ref=e51]: 
+            - generic [ref=e52]: 操作员管理
+        - listitem [ref=e53]:
+          - link " 角色权限" [ref=e54] [cursor=pointer]:
+            - /url: /admin/roles
+            - generic [ref=e55]: 
+            - generic [ref=e56]: 角色权限
+        - listitem [ref=e57]:
+          - link " 系统设置" [ref=e58] [cursor=pointer]:
+            - /url: /admin/settings
+            - generic [ref=e59]: 
+            - generic [ref=e60]: 系统设置
+    - generic [ref=e62]:
+      - generic [ref=e64]: 
+      - generic [ref=e65]:
+        - generic [ref=e66]: former
+        - generic [ref=e67]: 前台
+  - generic [ref=e68]:
+    - banner [ref=e69]:
+      - generic [ref=e70]:
+        - button "" [ref=e71] [cursor=pointer]:
+          - generic [ref=e72]: 
+        - generic [ref=e73]:
+          - generic [ref=e74]:
+            - generic [ref=e75]: 
+            - text: 2026-06-08 16:28:47
+          - generic [ref=e76]:
+            - link " former" [ref=e77] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e78]: 
+              - generic [ref=e79]: former
+            - text: 
+    - main [ref=e81]:
+      - generic [ref=e82]:
+        - heading " 数据统计" [level=4] [ref=e83]:
+          - generic [ref=e84]: 
+          - text: 数据统计
+        - generic [ref=e85]:
+          - link " 导出订单" [ref=e86] [cursor=pointer]:
+            - /url: /query/export/bookings
+            - generic [ref=e87]: 
+            - text: 导出订单
+          - link " 导出挂账" [ref=e88] [cursor=pointer]:
+            - /url: /query/export/credits
+            - generic [ref=e89]: 
+            - text: 导出挂账
+      - generic [ref=e90]:
+        - generic [ref=e93]:
+          - generic [ref=e94]: 0.0%
+          - text: 入住率
+        - generic [ref=e97]:
+          - generic [ref=e98]: ¥676
+          - text: 今日营收
+        - generic [ref=e101]:
+          - generic [ref=e102]: "0"
+          - text: 未还挂账
+        - generic [ref=e105]:
+          - generic [ref=e106]: 0★
+          - text: 平均评价 (0条)
+      - generic [ref=e107]:
+        - heading "客房状态分布" [level=6] [ref=e111]
+        - heading "近7天每日营收" [level=6] [ref=e119]
+        - heading "评价星级分布" [level=6] [ref=e127]
+        - heading "房型营收占比" [level=6] [ref=e135]
+        - generic [ref=e141]:
+          - heading "挂账概览" [level=6] [ref=e143]
+          - table [ref=e145]:
+            - rowgroup [ref=e146]:
+              - row "总挂账金额 ¥0" [ref=e147]:
+                - cell "总挂账金额" [ref=e148]
+                - cell "¥0" [ref=e149]
+              - row "未还欠款 ¥0" [ref=e150]:
+                - cell "未还欠款" [ref=e151]
+                - cell "¥0" [ref=e152]
+              - row "已还金额 ¥0" [ref=e153]:
+                - cell "已还金额" [ref=e154]
+                - cell "¥0" [ref=e155]
+              - row "回收率 0%" [ref=e156]:
+                - cell "回收率" [ref=e157]
+                - cell "0%" [ref=e158]
+        - heading "近30天营收趋势" [level=6] [ref=e162]

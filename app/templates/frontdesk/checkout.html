@@ -1,0 +1,31 @@
+{% extends "base.html" %}{% block title %}退房结账 - 酒店预订系统{% endblock %}
+{% block content %}
+<div class="mb-3"><h4><i class="bi bi-cash-stack"></i> 退房结账</h4></div>
+<div class="row"><div class="col-lg-7">
+<div class="card  mb-3"><div class="card-body">
+    <h5>订单 #{{ order.id }} 结算</h5>
+    <table class="table table-borderless small">
+        <tr><td width="80">客户</td><td><strong>{{ order.customer_name }}</strong></td></tr>
+        <tr><td>房间</td><td>{{ order.room.room_num }} ({{ order.room.room_type.type_name if order.room.room_type else '' }})</td></tr>
+        <tr><td>入住</td><td>{{ order.check_in.strftime('%Y-%m-%d %H:%M') }}</td></tr>
+        <tr><td>预计退房</td><td>{{ order.check_out.strftime('%Y-%m-%d %H:%M') if order.check_out else '未设置' }}</td></tr>
+        <tr><td>已住天数</td><td><strong>{{ order.nights_stayed }} 天</strong></td></tr>
+        <tr><td>续费次数</td><td>{{ order.renewal_count }} 次</td></tr>
+        <tr><td class="text-danger fw-bold">当前费用</td><td><span class="text-danger fw-bold fs-5">¥{{ '%.2f'|format(order.total_fee) }}</span></td></tr>
+    </table>
+</div></div>
+<div class="card "><div class="card-body">
+<form method="POST">
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <input type="hidden" name="order_id" value="{{order.id}}">
+    <div class="row g-3">
+        <div class="col-md-6"><label class="form-label">支付方式</label><select class="form-select" name="payment_method" id="payMethod" onchange="toggleCredit()"><option value="cash">现金</option><option value="wechat">微信</option><option value="alipay">支付宝</option><option value="card">银行卡</option><option value="credit">挂账</option></select></div>
+        <div class="col-md-6"><label class="form-label">折扣/优惠（元）</label><input type="number" step="0.01" class="form-control" name="discount" value="0"></div>
+        <div class="col-12 d-none" id="creditCompany"><label class="form-label">挂账单位</label><input type="text" class="form-control" name="credit_company" placeholder="请输入挂账单位名称"></div>
+        <div class="col-12"><button type="submit" class="btn btn-success px-4" onclick="return confirm('确认结账？')"><i class="bi bi-check-circle"></i> 确认结账</button></div>
+    </div>
+</form>
+</div></div>
+</div></div>
+{% endblock %}
+{% block extra_js %}<script>function toggleCredit(){document.getElementById('creditCompany').classList.toggle('d-none',document.getElementById('payMethod').value!=='credit');}</script>{% endblock %}

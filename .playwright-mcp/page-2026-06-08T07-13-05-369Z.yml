@@ -1,0 +1,120 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - link " 酒店预订系统" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e7]: 
+      - generic [ref=e8]: 酒店预订系统
+    - navigation [ref=e9]:
+      - list [ref=e10]:
+        - listitem [ref=e11]:
+          - link " 控制台" [ref=e12] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e13]: 
+            - generic [ref=e14]: 控制台
+        - listitem [ref=e15]: 前台业务
+        - listitem [ref=e16]:
+          - link " 住宿登记" [ref=e17] [cursor=pointer]:
+            - /url: /frontdesk/checkin
+            - generic [ref=e18]: 
+            - generic [ref=e19]: 住宿登记
+        - listitem [ref=e20]:
+          - link " 宿费提醒" [ref=e21] [cursor=pointer]:
+            - /url: /frontdesk/reminders
+            - generic [ref=e22]: 
+            - generic [ref=e23]: 宿费提醒
+        - listitem [ref=e24]: 资产管理
+        - listitem [ref=e25]:
+          - link " 客房管理" [ref=e26] [cursor=pointer]:
+            - /url: /rooms/
+            - generic [ref=e27]: 
+            - generic [ref=e28]: 客房管理
+        - listitem [ref=e29]:
+          - link " 订单管理" [ref=e30] [cursor=pointer]:
+            - /url: /bookings/
+            - generic [ref=e31]: 
+            - generic [ref=e32]: 订单管理
+        - listitem [ref=e33]:
+          - link " 挂账管理" [ref=e34] [cursor=pointer]:
+            - /url: /credits/
+            - generic [ref=e35]: 
+            - generic [ref=e36]: 挂账管理
+        - listitem [ref=e37]: 查询统计
+        - listitem [ref=e38]:
+          - link " 数据统计" [ref=e39] [cursor=pointer]:
+            - /url: /query/stats
+            - generic [ref=e40]: 
+            - generic [ref=e41]: 数据统计
+        - listitem [ref=e42]:
+          - link " 订单查询" [ref=e43] [cursor=pointer]:
+            - /url: /query/bookings
+            - generic [ref=e44]: 
+            - generic [ref=e45]: 订单查询
+    - generic [ref=e47]:
+      - generic [ref=e49]: 
+      - generic [ref=e50]:
+        - generic [ref=e51]: former
+        - generic [ref=e52]: 前台
+  - generic [ref=e53]:
+    - banner [ref=e54]:
+      - generic [ref=e55]:
+        - button "" [ref=e56] [cursor=pointer]:
+          - generic [ref=e57]: 
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - generic [ref=e60]: 
+            - text: 2026-06-08 15:13:05
+          - generic [ref=e61]:
+            - link " former" [ref=e62] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e63]: 
+              - generic [ref=e64]: former
+            - text: 
+    - main [ref=e66]:
+      - generic [ref=e67]:
+        - heading " 数据统计" [level=4] [ref=e68]:
+          - generic [ref=e69]: 
+          - text: 数据统计
+        - generic [ref=e70]:
+          - link " 导出订单" [ref=e71] [cursor=pointer]:
+            - /url: /query/export/bookings
+            - generic [ref=e72]: 
+            - text: 导出订单
+          - link " 导出挂账" [ref=e73] [cursor=pointer]:
+            - /url: /query/export/credits
+            - generic [ref=e74]: 
+            - text: 导出挂账
+      - generic [ref=e75]:
+        - generic [ref=e78]:
+          - generic [ref=e79]: 0.0%
+          - text: 入住率
+        - generic [ref=e82]:
+          - generic [ref=e83]: ¥0
+          - text: 今日营收
+        - generic [ref=e86]:
+          - generic [ref=e87]: "0"
+          - text: 未还挂账
+        - generic [ref=e90]:
+          - generic [ref=e91]: 0★
+          - text: 平均评价 (0条)
+      - generic [ref=e92]:
+        - heading "客房状态分布" [level=6] [ref=e96]
+        - heading "近7天每日营收" [level=6] [ref=e102]
+        - heading "评价星级分布" [level=6] [ref=e108]
+        - heading "房型营收占比" [level=6] [ref=e114]
+        - generic [ref=e118]:
+          - heading "挂账概览" [level=6] [ref=e120]
+          - table [ref=e122]:
+            - rowgroup [ref=e123]:
+              - row "总挂账金额 ¥0" [ref=e124]:
+                - cell "总挂账金额" [ref=e125]
+                - cell "¥0" [ref=e126]
+              - row "未还欠款 ¥0" [ref=e127]:
+                - cell "未还欠款" [ref=e128]
+                - cell "¥0" [ref=e129]
+              - row "已还金额 ¥0" [ref=e130]:
+                - cell "已还金额" [ref=e131]
+                - cell "¥0" [ref=e132]
+              - row "回收率 0%" [ref=e133]:
+                - cell "回收率" [ref=e134]
+                - cell "0%" [ref=e135]
+        - heading "近30天营收趋势" [level=6] [ref=e139]

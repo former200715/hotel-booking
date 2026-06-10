@@ -1,0 +1,34 @@
+{% extends "base.html" %}{% block title %}订单查询 - 酒店预订系统{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3"><h4><i class="bi bi-search"></i> 订单查询</h4><a href="{{url_for('query.export_bookings')}}?{{request.query_string.decode()}}" class="btn btn-outline-success btn-sm"><i class="bi bi-download"></i> 导出Excel</a></div>
+<!-- 搜索框 -->
+<div class="card  mb-3"><div class="card-body py-2">
+<form class="row g-2" method="GET">
+    <div class="col-md-2"><input type="text" class="form-control form-control-sm" name="customer" placeholder="客户姓名" value="{{customer}}"></div>
+    <div class="col-md-2"><input type="text" class="form-control form-control-sm" name="phone" placeholder="手机号" value="{{phone}}"></div>
+    <div class="col-md-2"><input type="text" class="form-control form-control-sm" name="room_num" placeholder="房间号" value="{{room_num}}"></div>
+    <div class="col-md-2"><select class="form-select form-select-sm" name="status"><option value="">全部状态</option><option value="pending" {%if status=='pending'%}selected{%endif%}>待确认</option><option value="confirmed" {%if status=='confirmed'%}selected{%endif%}>已确认</option><option value="completed" {%if status=='completed'%}selected{%endif%}>已完成</option><option value="cancelled" {%if status=='cancelled'%}selected{%endif%}>已取消</option></select></div>
+    <div class="col-md-2"><input type="date" class="form-control form-control-sm" name="date_from" value="{{date_from}}"></div>
+    <div class="col-md-1"><input type="date" class="form-control form-control-sm" name="date_to" value="{{date_to}}"></div>
+    <div class="col-md-1"><button class="btn btn-sm btn-primary w-100">查询</button></div>
+</form></div></div>
+<!-- 汇总 -->
+<div class="small text-muted mb-2">共 {{pagination.total}} 条记录 · 合计营收 <strong class="text-danger">¥{{'%.0f'|format(total_revenue)}}</strong></div>
+<div class="card "><div class="card-body p-0"><div class="table-responsive">
+<table class="table table-hover mb-0"><thead class="table-light"><tr><th>ID</th><th>客户</th><th>电话</th><th>房间</th><th>入住</th><th>退房</th><th>费用</th><th>状态</th><th>操作</th></tr></thead><tbody>
+{% for o in pagination.items %}
+<tr><td>#{{o.id}}</td><td>{{o.customer_name}}</td><td class="small">{{o.phone}}</td><td>{{o.room.room_num if o.room else '-'}}</td><td class="small">{{o.check_in.strftime('%m-%d %H:%M') if o.check_in else '-'}}</td><td class="small">{{o.check_out.strftime('%m-%d %H:%M') if o.check_out else '未退房'}}</td><td class="text-danger">¥{{'%.0f'|format(o.total_fee)}}</td>
+    <td>{% if o.order_status=='confirmed' %}<span class="badge bg-primary">已确认</span>{% elif o.order_status=='completed' %}<span class="badge bg-success">已完成</span>{% elif o.order_status=='cancelled' %}<span class="badge bg-secondary">已取消</span>{% else %}<span class="badge bg-warning text-dark">待确认</span>{% endif %}</td>
+    <td>{% if o.order_status=='confirmed' %}<a href="{{url_for('frontdesk.checkout',order_id=o.id)}}" class="btn btn-sm btn-success">结账</a>{% endif %}</td></tr>
+{% else %}<tr><td colspan="9" class="text-center py-4 text-muted">暂无记录</td></tr>{% endfor %}
+</tbody></table></div></div></div>
+{% if pagination.pages>1 %}
+<nav class="mt-3"><ul class="pagination pagination-sm justify-content-center">
+    <li class="page-item {%if not pagination.has_prev%}disabled{%endif%}"><a class="page-link" href="?page={{pagination.prev_num}}&customer={{customer}}&phone={{phone}}&room_num={{room_num}}&status={{status}}&date_from={{date_from}}&date_to={{date_to}}">上一页</a></li>
+    {% for p in pagination.iter_pages(left_edge=1,right_edge=1,left_current=2,right_current=2) %}
+    {% if p %}<li class="page-item {%if p==pagination.page%}active{%endif%}"><a class="page-link" href="?page={{p}}&customer={{customer}}&phone={{phone}}&room_num={{room_num}}&status={{status}}&date_from={{date_from}}&date_to={{date_to}}">{{p}}</a></li>
+    {% else %}<li class="page-item disabled"><span class="page-link">...</span></li>{% endif %}{% endfor %}
+    <li class="page-item {%if not pagination.has_next%}disabled{%endif%}"><a class="page-link" href="?page={{pagination.next_num}}&customer={{customer}}&phone={{phone}}&room_num={{room_num}}&status={{status}}&date_from={{date_from}}&date_to={{date_to}}">下一页</a></li>
+</ul></nav>
+{% endif %}
+{% endblock %}

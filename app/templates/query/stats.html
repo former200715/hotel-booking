@@ -1,0 +1,109 @@
+{% extends "base.html" %}{% block title %}数据统计 - 酒店预订系统{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4><i class="bi bi-bar-chart-line"></i> 数据统计</h4>
+    <div><a href="{{url_for('query.export_bookings')}}" class="btn btn-outline-success btn-sm me-1"><i class="bi bi-download"></i> 导出订单</a><a href="{{url_for('query.export_credits')}}" class="btn btn-outline-danger btn-sm"><i class="bi bi-download"></i> 导出挂账</a></div>
+</div>
+<!-- 概览卡片 -->
+<div class="row g-3 mb-4">
+    <div class="col-6 col-md-3"><div class="stat-card card "><div class="card-body p-3 text-center"><div class="fs-3 fw-bold text-primary">{{usage_rate}}%</div><small class="text-muted">入住率</small></div></div></div>
+    <div class="col-6 col-md-3"><div class="stat-card card "><div class="card-body p-3 text-center"><div class="fs-3 fw-bold text-success">¥{{'%.0f'|format(today_revenue)}}</div><small class="text-muted">今日营收</small></div></div></div>
+    <div class="col-6 col-md-3"><div class="stat-card card "><div class="card-body p-3 text-center"><div class="fs-3 fw-bold text-warning">{{credit_stats.unpaid_count}}</div><small class="text-muted">未还挂账</small></div></div></div>
+    <div class="col-6 col-md-3"><div class="stat-card card "><div class="card-body p-3 text-center"><div class="fs-3 fw-bold text-info">{{review_stats.avg_rating}}★</div><small class="text-muted">平均评价 ({{review_stats.total}}条)</small></div></div></div>
+</div>
+<div class="row g-4">
+    <!-- 客房使用率饼图 -->
+    <div class="col-lg-4"><div class="card "><div class="card-header bg-white border-0"><h6 class="mb-0">客房状态分布</h6></div><div class="card-body"><div id="roomPieChart" style="height:300px"></div></div></div></div>
+    <!-- 近7天营收柱状图 -->
+    <div class="col-lg-8"><div class="card "><div class="card-header bg-white border-0"><h6 class="mb-0">近7天每日营收</h6></div><div class="card-body"><div id="revenueBarChart" style="height:300px"></div></div></div></div>
+    <!-- 评价分布 -->
+    <div class="col-lg-4"><div class="card "><div class="card-header bg-white border-0"><h6 class="mb-0">评价星级分布</h6></div><div class="card-body"><div id="reviewDistChart" style="height:260px"></div></div></div></div>
+    <!-- 房型营收占比 -->
+    <div class="col-lg-4"><div class="card "><div class="card-header bg-white border-0"><h6 class="mb-0">房型营收占比</h6></div><div class="card-body"><div id="typeRevenueChart" style="height:260px"></div></div></div></div>
+    <!-- 挂账统计 -->
+    <div class="col-lg-4"><div class="card "><div class="card-header bg-white border-0"><h6 class="mb-0">挂账概览</h6></div><div class="card-body p-0"><table class="table table-sm mb-0"><tbody>
+        <tr><td>总挂账金额</td><td class="text-danger fw-bold">¥{{'%.0f'|format(credit_stats.total_debt)}}</td></tr>
+        <tr><td>未还欠款</td><td class="text-danger fw-bold">¥{{'%.0f'|format(credit_stats.total_unpaid)}}</td></tr>
+        <tr><td>已还金额</td><td class="text-success fw-bold">¥{{'%.0f'|format(credit_stats.total_paid)}}</td></tr>
+        <tr><td>回收率</td><td class="fw-bold">{% if credit_stats.total_debt %}{{'%.1f'|format(credit_stats.total_paid/credit_stats.total_debt*100)}}{% else %}0{% endif %}%</td></tr>
+    </tbody></table></div></div></div>
+    <!-- 30天趋势 -->
+    <div class="col-12"><div class="card "><div class="card-header bg-white border-0"><h6 class="mb-0">近30天营收趋势</h6></div><div class="card-body"><div id="monthlyTrendChart" style="height:320px"></div></div></div></div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+(function(){
+    var roomPie = echarts.init(document.getElementById('roomPieChart'));
+    roomPie.setOption({
+        tooltip:{trigger:'item'},
+        legend:{bottom:0,textStyle:{color:'#94a3b8'}},
+        series:[{type:'pie',radius:['45%','70%'],label:{formatter:'{b}\n{d}%',color:'#94a3b8'},
+            data:[
+                {value:{{room_status.available}},name:'空闲',itemStyle:{color:'#4ade80'}},
+                {value:{{room_status.occupied}},name:'已入住',itemStyle:{color:'#f87171'}},
+                {value:{{room_status.reserved}},name:'已预订',itemStyle:{color:'#fbbf24'}},
+                {value:{{room_status.maintenance}},name:'维护中',itemStyle:{color:'#64748b'}}
+            ]}]
+    });
+
+    var revBar = echarts.init(document.getElementById('revenueBarChart'));
+    revBar.setOption({
+        tooltip:{trigger:'axis'},
+        grid:{left:50,right:20,bottom:30,top:10},
+        xAxis:{data:[{% for d in daily_revenue %}'{{d.date}}'{% if not loop.last %},{% endif %}{% endfor %}],axisLabel:{color:'#94a3b8'}},
+        yAxis:{type:'value',axisLabel:{formatter:'¥{value}',color:'#94a3b8'}},
+        series:[{type:'bar',
+            data:[{% for d in daily_revenue %}{{d.revenue}}{% if not loop.last %},{% endif %}{% endfor %}],
+            itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#818cf8'},{offset:1,color:'#6366f1'}])},
+            barWidth:'50%',
+            label:{show:true,position:'top',formatter:function(p){return p.value>0?'¥'+(p.value/1000).toFixed(1)+'k':'';},color:'#94a3b8'}
+        }]
+    });
+
+    var revDist = echarts.init(document.getElementById('reviewDistChart'));
+    revDist.setOption({
+        tooltip:{trigger:'item'},
+        series:[{type:'pie',radius:'70%',label:{formatter:'{b}: {c}条'},
+            data:[{% for i in range(1,6) %}{value:{{review_stats.dist[i]}},name:'{{i}}★'}{% if not loop.last %},{% endif %}{% endfor %}]}]
+    });
+
+    var typeRev = echarts.init(document.getElementById('typeRevenueChart'));
+    typeRev.setOption({
+        tooltip:{trigger:'item'},
+        legend:{bottom:0},
+        series:[{type:'pie',radius:'60%',
+            data:[{% for t in type_revenue %}{value:{{'%.2f'|format(t[1] or 0)}},name:'{{t[0]}}'}{% if not loop.last %},{% endif %}{% endfor %}]}]
+    });
+
+    var monthlyT = echarts.init(document.getElementById('monthlyTrendChart'));
+    monthlyT.setOption({
+        tooltip:{trigger:'axis'},
+        grid:{left:50,right:80,bottom:30,top:10},
+        legend:{data:['营收','订单数'],textStyle:{color:'#94a3b8'}},
+        xAxis:{data:[{% for d in monthly_revenue %}'{{d.date}}'{% if not loop.last %},{% endif %}{% endfor %}],axisLabel:{color:'#94a3b8'}},
+        yAxis:[
+            {type:'value',name:'营收(¥)',nameTextStyle:{color:'#94a3b8'},axisLabel:{color:'#94a3b8'}},
+            {type:'value',name:'订单数',nameTextStyle:{color:'#94a3b8'},axisLabel:{color:'#94a3b8'}}
+        ],
+        series:[
+            {
+                name:'营收',type:'line',smooth:true,
+                data:[{% for d in monthly_revenue %}{{d.revenue}}{% if not loop.last %},{% endif %}{% endfor %}],
+                itemStyle:{color:'#818cf8'},
+                areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(129,140,248,0.3)'},{offset:1,color:'rgba(129,140,248,0)'}])}
+            },
+            {
+                name:'订单数',type:'bar',yAxisIndex:1,
+                data:[{% for d in monthly_revenue %}{{d.count}}{% if not loop.last %},{% endif %}{% endfor %}],
+                itemStyle:{color:'rgba(251,191,36,0.6)'},barWidth:'60%'
+            }
+        ]
+    });
+
+    window.addEventListener('resize',function(){
+        roomPie.resize();revBar.resize();revDist.resize();typeRev.resize();monthlyT.resize();
+    });
+})();
+</script>
+{% endblock %}

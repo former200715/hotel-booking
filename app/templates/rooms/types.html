@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}房型管理 - 酒店预订系统{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex align-items-center gap-2">
+        <a href="{{ url_for('room.room_manage') }}" class="btn btn-outline-secondary btn-sm" title="返回客房管理"><i class="bi bi-arrow-left"></i></a>
+        <h4 class="mb-0"><i class="bi bi-tags"></i> 房型管理</h4>
+    </div>
+    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#typeModal" onclick="resetTypeForm()">
+        <i class="bi bi-plus-lg"></i> 新增房型
+    </button>
+</div>
+<div class="row g-3">
+    {% for t in types %}
+    <div class="col-md-6 col-lg-4">
+        <div class="card  h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ t.type_name }}</h5>
+                <p class="text-danger fw-bold mb-1">¥{{ '%.0f'|format(t.base_price) }} / 晚</p>
+                <p class="text-muted small mb-0">设施：{{ t.facility or '未设置' }}</p>
+                <p class="text-muted small">房间数：{{ t.rooms.count() }}</p>
+            </div>
+            <div class="card-footer bg-white border-0 d-flex gap-1">
+                <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#typeModal"
+                        onclick="editType({{t.id}},'{{t.type_name}}',{{t.base_price}},'{{t.facility or ''}}')">
+                    <i class="bi bi-pencil"></i> 编辑
+                </button>
+                {% if t.rooms.count()==0 %}
+                <form method="POST" action="{{url_for('room.type_delete', type_id=t.id)}}" onsubmit="return confirm('确定删除？')">
+                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                    <button class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% else %}<div class="col-12 text-center py-5 text-muted">暂无房型</div>{% endfor %}
+</div>
+
+<!-- 新增/编辑弹窗 -->
+<div class="modal fade" id="typeModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content">
+    <form id="typeForm" method="POST" action="{{url_for('room.type_create')}}">
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <div class="modal-header"><h5 class="modal-title" id="typeModalTitle">新增房型</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body">
+            <div class="mb-3"><label class="form-label">类型名称</label><input type="text" class="form-control" name="type_name" id="type_name" required></div>
+            <div class="mb-3"><label class="form-label">基础价格（元/晚）</label><input type="number" step="0.01" class="form-control" name="base_price" id="base_price" required></div>
+            <div class="mb-3"><label class="form-label">配套设施</label><input type="text" class="form-control" name="facility" id="facility" placeholder="WiFi,电视,空调..."></div>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button><button type="submit" class="btn btn-primary">保存</button></div>
+    </form>
+</div></div></div>
+{% endblock %}
+{% block extra_js %}
+<script>
+function resetTypeForm(){document.getElementById('typeForm').action='{{url_for("room.type_create")}}';document.getElementById('typeModalTitle').textContent='新增房型';document.getElementById('type_name').value='';document.getElementById('base_price').value='';document.getElementById('facility').value='';}
+function editType(id,name,price,facility){document.getElementById('typeForm').action='{{url_for("room.type_edit", type_id=999)}}'.replace('999',id);document.getElementById('typeModalTitle').textContent='编辑房型 — '+name;document.getElementById('type_name').value=name;document.getElementById('base_price').value=price;document.getElementById('facility').value=facility;}
+</script>
+{% endblock %}

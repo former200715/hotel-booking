@@ -1,0 +1,94 @@
+[project]
+name = "hotel-booking"
+version = "1.0.0"
+description = "酒店预订管理系统"
+requires-python = ">=3.13"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.8.0",
+    "mypy>=1.0",
+    "basedpyright>=1.0",
+    "pytest>=8.0",
+    "pytest-cov>=4.0",
+    "bandit>=1.7",
+    "vulture>=2.0",
+]
+
+[tool.ruff]
+line-length = 140
+target-version = "py313"
+src = ["app"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W", "F", "I",    # pycodestyle + pyflakes + isort
+    "N",                    # pep8-naming
+    "UP",                   # pyupgrade
+    "B",                    # flake8-bugbear
+    "C4",                   # flake8-comprehensions
+    "SIM",                  # flake8-simplify
+]
+ignore = [
+    "E701",  # 允许守卫子句单行: if not x: flash('error'); return redirect(...)
+    "E702",  # 允许分号分隔短语句
+]
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.mypy]
+python_version = "3.13"
+strict = false
+warn_return_any = true
+warn_unused_configs = true
+check_untyped_defs = true
+no_implicit_optional = true
+
+[[tool.mypy.overrides]]
+module = "flask.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "flask_login.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "flask_sqlalchemy.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "flask_migrate.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "flask_wtf.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "flask_bootstrap.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "pymysql.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "wtforms.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "werkzeug.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "openpyxl.*"
+ignore_missing_imports = true
+
+[tool.basedpyright]
+pythonVersion = "3.13"
+typeCheckingMode = "basic"
+reportMissingTypeStubs = false
+reportUnknownMemberType = false
+reportUnknownArgumentType = false
+reportUnknownVariableType = false

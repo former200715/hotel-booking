@@ -1,0 +1,167 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic: 
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - link " 酒店预订系统" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e7]: 
+          - generic [ref=e8]: 酒店预订系统
+        - button "" [ref=e9] [cursor=pointer]:
+          - generic [ref=e10]: 
+      - navigation [ref=e11]:
+        - list [ref=e12]:
+          - listitem [ref=e13]:
+            - link " 控制台" [ref=e14] [cursor=pointer]:
+              - /url: /
+              - generic [ref=e15]: 
+              - generic [ref=e16]: 控制台
+          - listitem [ref=e17]:
+            - link " 客房管理" [ref=e18] [cursor=pointer]:
+              - /url: /rooms/
+              - generic [ref=e19]: 
+              - generic [ref=e20]: 客房管理
+          - listitem [ref=e21]:
+            - link " 订单管理" [ref=e22] [cursor=pointer]:
+              - /url: /bookings/
+              - generic [ref=e23]: 
+              - generic [ref=e24]: 订单管理
+          - listitem [ref=e25]: 查询统计
+          - listitem [ref=e26]:
+            - link " 数据统计" [ref=e27] [cursor=pointer]:
+              - /url: /query/stats
+              - generic [ref=e28]: 
+              - generic [ref=e29]: 数据统计
+          - listitem [ref=e30]:
+            - link " 订单查询" [ref=e31] [cursor=pointer]:
+              - /url: /query/bookings
+              - generic [ref=e32]: 
+              - generic [ref=e33]: 订单查询
+          - listitem [ref=e34]: 前台业务
+          - listitem [ref=e35]:
+            - link " 住宿登记" [ref=e36] [cursor=pointer]:
+              - /url: /frontdesk/checkin
+              - generic [ref=e37]: 
+              - generic [ref=e38]: 住宿登记
+          - listitem [ref=e39]:
+            - link " 宿费提醒" [ref=e40] [cursor=pointer]:
+              - /url: /frontdesk/reminders
+              - generic [ref=e41]: 
+              - generic [ref=e42]: 宿费提醒
+          - listitem [ref=e43]:
+            - link " 挂账管理" [ref=e44] [cursor=pointer]:
+              - /url: /credits/
+              - generic [ref=e45]: 
+              - generic [ref=e46]: 挂账管理
+      - generic [ref=e48]:
+        - generic [ref=e50]: 
+        - generic [ref=e51]:
+          - generic [ref=e52]: former
+          - generic [ref=e53]: 前台
+    - banner [ref=e55]:
+      - generic [ref=e56]:
+        - generic [ref=e57]:
+          - generic [ref=e58]: 
+          - text: 2026-06-08 14:12:33
+        - generic [ref=e59]:
+          - link " former" [ref=e60] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e61]: 
+            - generic [ref=e62]: former
+          - text: 
+    - main [ref=e64]:
+      - generic [ref=e66]:
+        - heading "控制台" [level=4] [ref=e67]
+        - text: 今日新增 0 单
+      - generic [ref=e68]:
+        - generic [ref=e71]:
+          - generic [ref=e73]: 
+          - generic [ref=e74]: ¥0
+          - generic [ref=e75]: 总营收
+        - generic [ref=e78]:
+          - generic [ref=e80]: 
+          - generic [ref=e81]: "0"
+          - generic [ref=e82]: 总订单数
+        - generic [ref=e85]:
+          - generic [ref=e87]: 
+          - generic [ref=e88]: "0"
+          - generic [ref=e89]: 今日新增
+        - generic [ref=e92]:
+          - generic [ref=e94]: 
+          - generic [ref=e95]: "0"
+          - generic [ref=e96]: 未还挂账
+      - generic [ref=e97]:
+        - generic [ref=e99]:
+          - heading " 房间概览" [level=6] [ref=e101]:
+            - generic [ref=e102]: 
+            - text: 房间概览
+          - generic [ref=e103]:
+            - generic [ref=e104]:
+              - generic [ref=e105]: 空闲
+              - generic [ref=e106]: "0"
+            - generic [ref=e108]:
+              - generic [ref=e109]: 已入住
+              - generic [ref=e110]: "0"
+            - generic [ref=e112]:
+              - generic [ref=e113]: 维护中
+              - generic [ref=e114]: "0"
+            - generic [ref=e116]:
+              - text: 总房间数
+              - strong [ref=e117]: "0"
+              - text: 间
+        - generic [ref=e119]:
+          - heading " 订单状态" [level=6] [ref=e121]:
+            - generic [ref=e122]: 
+            - text: 订单状态
+          - generic [ref=e124]:
+            - generic [ref=e126]:
+              - generic [ref=e127]: "0"
+              - generic [ref=e128]: 已确认
+            - generic [ref=e130]:
+              - generic [ref=e131]: "0"
+              - generic [ref=e132]: 已完成
+        - generic [ref=e134]:
+          - heading " 系统概况" [level=6] [ref=e136]:
+            - generic [ref=e137]: 
+            - text: 系统概况
+          - list [ref=e139]:
+            - listitem [ref=e140]:
+              - generic [ref=e141]:
+                - generic [ref=e142]: 
+                - text: 操作员
+              - strong [ref=e143]: "1"
+            - listitem [ref=e144]:
+              - generic [ref=e145]:
+                - generic [ref=e146]: 
+                - text: 角色
+              - strong [ref=e147]: "1"
+            - listitem [ref=e148]:
+              - generic [ref=e149]:
+                - generic [ref=e150]: 
+                - text: 房型
+              - strong [ref=e151]: "1"
+            - listitem [ref=e152]:
+              - generic [ref=e153]:
+                - generic [ref=e154]: 
+                - text: 未还挂账
+              - strong [ref=e155]: "0"
+      - generic [ref=e156]:
+        - generic [ref=e157]:
+          - heading " 最近订单" [level=6] [ref=e158]:
+            - generic [ref=e159]: 
+            - text: 最近订单
+          - link "查看全部" [ref=e160] [cursor=pointer]:
+            - /url: /bookings/
+        - table [ref=e163]:
+          - rowgroup [ref=e164]:
+            - row "订单ID 客户 房间 入住时间 费用 状态" [ref=e165]:
+              - columnheader "订单ID" [ref=e166]
+              - columnheader "客户" [ref=e167]
+              - columnheader "房间" [ref=e168]
+              - columnheader "入住时间" [ref=e169]
+              - columnheader "费用" [ref=e170]
+              - columnheader "状态" [ref=e171]
+          - rowgroup [ref=e172]:
+            - row "暂无订单记录" [ref=e173]:
+              - cell "暂无订单记录" [ref=e174]

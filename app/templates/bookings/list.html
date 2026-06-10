@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}订单管理 - 酒店预订系统{% endblock %}
+
+{% block content %}
+<h3 class="mb-4"><i class="bi bi-calendar-check"></i> 订单管理</h3>
+
+{% if orders %}
+<div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>订单ID</th>
+                <th>房间</th>
+                <th>客户信息</th>
+                <th>入住 / 退房</th>
+                <th>总费用</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td><strong>#{{ order.id }}</strong></td>
+                <td>
+                    <div>{{ order.room.room_num }}</div>
+                    <small class="text-muted">
+                        {{ order.room.room_type.type_name if order.room.room_type else '-' }}
+                    </small>
+                </td>
+                <td>
+                    <div>{{ order.customer_name }}</div>
+                    <small class="text-muted">{{ order.phone }}</small>
+                </td>
+                <td>
+                    <div>{{ order.check_in.strftime('%Y-%m-%d %H:%M') }}</div>
+                    <small class="text-muted">
+                        至 {{ order.check_out.strftime('%Y-%m-%d %H:%M') if order.check_out else '未退房' }}
+                    </small>
+                </td>
+                <td><strong class="text-danger">&yen;{{ '%.0f'|format(order.total_fee) }}</strong></td>
+                <td>
+                    {% if order.order_status == 'confirmed' %}
+                    <span class="badge bg-primary">已确认</span>
+                    {% elif order.order_status == 'completed' %}
+                    <span class="badge bg-success">已完成</span>
+                    {% elif order.order_status == 'cancelled' %}
+                    <span class="badge bg-secondary">已取消</span>
+                    {% else %}
+                    <span class="badge bg-warning text-dark">待确认</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="d-flex flex-wrap gap-1">
+                        {% if order.order_status == 'confirmed' %}
+                        <a href="{{ url_for('frontdesk.checkout', order_id=order.id) }}" class="btn btn-success btn-sm">结账</a>
+                        <a href="{{ url_for('frontdesk.renewal', order_id=order.id) }}" class="btn btn-warning btn-sm">续费</a>
+                        <form method="POST" action="{{ url_for('booking.cancel_booking', order_id=order.id) }}"
+                              onsubmit="return confirm('确定要取消此订单吗？');" class="d-inline">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">取消</button>
+                        </form>
+                        {% else %}
+                        <span class="text-muted small">--</span>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="text-center py-5">
+    <i class="bi bi-calendar-x display-1 text-muted"></i>
+    <p class="text-muted mt-3">暂无订单</p>
+    <a href="{{ url_for('room.list_rooms') }}" class="btn btn-primary">去预订客房</a>
+</div>
+{% endif %}
+{% endblock %}

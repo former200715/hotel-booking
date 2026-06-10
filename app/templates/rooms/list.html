@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% block title %}客房管理 - 酒店预订系统{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3><i class="bi bi-building"></i> 客房管理</h3>
+    <span class="text-muted">共 {{ rooms|length }} 间</span>
+</div>
+
+<!-- 筛选栏 -->
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <div class="row g-2 align-items-center">
+            <div class="col-auto">
+                <strong class="text-muted">房型：</strong>
+            </div>
+            <div class="col">
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="{{ url_for('room.list_rooms', status=current_status) }}"
+                       class="btn btn-sm {% if not current_type %}btn-primary{% else %}btn-outline-secondary{% endif %} rounded-pill">
+                        全部
+                    </a>
+                    {% for t in types %}
+                    <a href="{{ url_for('room.list_rooms', type_id=t.id, status=current_status) }}"
+                       class="btn btn-sm {% if current_type == t.id %}btn-primary{% else %}btn-outline-secondary{% endif %} rounded-pill">
+                        {{ t.type_name }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row g-2 align-items-center">
+            <div class="col-auto">
+                <strong class="text-muted">状态：</strong>
+            </div>
+            <div class="col">
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="{{ url_for('room.list_rooms', type_id=current_type) }}"
+                       class="btn btn-sm {% if not current_status %}btn-primary{% else %}btn-outline-secondary{% endif %} rounded-pill">
+                        全部
+                    </a>
+                    <a href="{{ url_for('room.list_rooms', status='available', type_id=current_type) }}"
+                       class="btn btn-sm {% if current_status == 'available' %}btn-success{% else %}btn-outline-success{% endif %} rounded-pill">
+                        空闲
+                    </a>
+                    <a href="{{ url_for('room.list_rooms', status='occupied', type_id=current_type) }}"
+                       class="btn btn-sm {% if current_status == 'occupied' %}btn-danger{% else %}btn-outline-danger{% endif %} rounded-pill">
+                        已入住
+                    </a>
+                    <a href="{{ url_for('room.list_rooms', status='reserved', type_id=current_type) }}"
+                       class="btn btn-sm {% if current_status == 'reserved' %}btn-warning{% else %}btn-outline-warning{% endif %} rounded-pill">
+                        已预订
+                    </a>
+                    <a href="{{ url_for('room.list_rooms', status='maintenance', type_id=current_type) }}"
+                       class="btn btn-sm {% if current_status == 'maintenance' %}btn-secondary{% else %}btn-outline-secondary{% endif %} rounded-pill">
+                        维护中
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if rooms %}
+<div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>房号</th>
+                <th>房型</th>
+                <th>楼层</th>
+                <th>价格/晚</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+            <tr>
+                <td><strong>{{ room.room_num }}</strong></td>
+                <td>{{ room.room_type.type_name if room.room_type else '-' }}</td>
+                <td>{{ room.floor }}层</td>
+                <td><span class="text-danger fw-bold">&yen;{{ '%.0f'|format(room.price) }}</span></td>
+                <td>
+                    {% if room.status == 'available' %}
+                    <span class="badge bg-success">空闲</span>
+                    {% elif room.status == 'occupied' %}
+                    <span class="badge bg-danger">已入住</span>
+                    {% elif room.status == 'reserved' %}
+                    <span class="badge bg-warning text-dark">已预订</span>
+                    {% else %}
+                    <span class="badge bg-secondary">维护中</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ url_for('room.room_detail', room_id=room.id) }}"
+                       class="btn btn-outline-primary btn-sm">详情</a>
+                    {% if room.is_available() and current_user.is_authenticated %}
+                    <button type="button" class="btn btn-success btn-sm btn-book"
+                            data-bs-toggle="modal" data-bs-target="#bookingModal"
+                            data-room-id="{{ room.id }}"
+                            data-room-num="{{ room.room_num }}"
+                            data-room-type="{{ room.room_type.type_name if room.room_type else '' }}"
+                            data-room-price="{{ '%.0f'|format(room.price) }}">
+                        预订
+                    </button>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="text-center py-5">
+    <i class="bi bi-inbox display-1 text-muted"></i>
+    <p class="text-muted mt-3">暂无符合条件的房间</p>
+</div>
+{% endif %}
+
+<!-- 预订弹窗 -->
+{% if current_user.is_authenticated %}
+<div class="modal fade" id="bookingModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="{{ url_for('booking.create_booking') }}">
+                <div class="modal-header">
+                    <h5 class="modal-title">预订房间</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="room_id" id="modalRoomId">
+                    <div class="mb-3">
+                        <label class="form-label">房号</label>
+                        <input type="text" class="form-control" id="modalRoomNum" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">房型</label>
+                        <input type="text" class="form-control" id="modalRoomType" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">价格</label>
+                        <input type="text" class="form-control" id="modalRoomPrice" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">客户姓名</label>
+                        <input type="text" class="form-control" name="customer_name"
+                               placeholder="请输入客户姓名" required minlength="2">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">联系电话</label>
+                        <input type="text" class="form-control" name="phone"
+                               placeholder="请输入手机号" required minlength="11">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">入住日期</label>
+                            <input type="date" class="form-control" name="check_in" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">退房日期</label>
+                            <input type="date" class="form-control" name="check_out" required>
+                        </div>
+                    </div>
+                    <div class="alert alert-info small mb-0">
+                        <i class="bi bi-info-circle"></i> 退房日期必须晚于入住日期
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">确认预订</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// 预订弹窗脚本：将房间信息填入弹窗
+document.addEventListener('DOMContentLoaded', function() {
+    const bookingModal = document.getElementById('bookingModal');
+    if (bookingModal) {
+        bookingModal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            document.getElementById('modalRoomId').value = button.getAttribute('data-room-id');
+            document.getElementById('modalRoomNum').value = button.getAttribute('data-room-num');
+            document.getElementById('modalRoomType').value = button.getAttribute('data-room-type');
+            document.getElementById('modalRoomPrice').value = '¥' + button.getAttribute('data-room-price') + '/晚';
+
+            const today = new Date().toISOString().split('T')[0];
+            const checkInInput = bookingModal.querySelector('input[name="check_in"]');
+            if (checkInInput) {
+                checkInInput.setAttribute('min', today);
+                checkInInput.value = today;
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

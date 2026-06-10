@@ -1,0 +1,114 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - generic [ref=e4]:
+      - link " 酒店预订系统" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: 
+        - generic [ref=e8]: 酒店预订系统
+      - button "" [ref=e9] [cursor=pointer]:
+        - generic [ref=e10]: 
+    - navigation [ref=e11]:
+      - list [ref=e12]:
+        - listitem [ref=e13]:
+          - link " 控制台" [ref=e14] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e15]: 
+            - generic [ref=e16]: 控制台
+        - listitem [ref=e17]:
+          - link " 客房管理" [ref=e18] [cursor=pointer]:
+            - /url: /rooms/
+            - generic [ref=e19]: 
+            - generic [ref=e20]: 客房管理
+        - listitem [ref=e21]:
+          - link " 订单管理" [ref=e22] [cursor=pointer]:
+            - /url: /bookings/
+            - generic [ref=e23]: 
+            - generic [ref=e24]: 订单管理
+        - listitem [ref=e25]: 查询统计
+        - listitem [ref=e26]:
+          - link " 数据统计" [ref=e27] [cursor=pointer]:
+            - /url: /query/stats
+            - generic [ref=e28]: 
+            - generic [ref=e29]: 数据统计
+        - listitem [ref=e30]:
+          - link " 订单查询" [ref=e31] [cursor=pointer]:
+            - /url: /query/bookings
+            - generic [ref=e32]: 
+            - generic [ref=e33]: 订单查询
+        - listitem [ref=e34]: 前台业务
+        - listitem [ref=e35]:
+          - link " 住宿登记" [ref=e36] [cursor=pointer]:
+            - /url: /frontdesk/checkin
+            - generic [ref=e37]: 
+            - generic [ref=e38]: 住宿登记
+        - listitem [ref=e39]:
+          - link " 宿费提醒" [ref=e40] [cursor=pointer]:
+            - /url: /frontdesk/reminders
+            - generic [ref=e41]: 
+            - generic [ref=e42]: 宿费提醒
+        - listitem [ref=e43]:
+          - link " 挂账管理" [ref=e44] [cursor=pointer]:
+            - /url: /credits/
+            - generic [ref=e45]: 
+            - generic [ref=e46]: 挂账管理
+    - generic [ref=e48]:
+      - generic [ref=e50]: 
+      - generic [ref=e51]:
+        - generic [ref=e52]: former
+        - generic [ref=e53]: 前台
+  - generic [ref=e54]:
+    - banner [ref=e55]:
+      - generic [ref=e56]:
+        - button "" [ref=e57] [cursor=pointer]:
+          - generic [ref=e58]: 
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - generic [ref=e61]: 
+            - text: 2026-06-08 13:07:05
+          - generic [ref=e62]:
+            - link " former" [ref=e63] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e64]: 
+              - generic [ref=e65]: former
+            - text: 
+    - main [ref=e67]:
+      - generic [ref=e68]:
+        - heading " 挂账管理" [level=4] [ref=e69]:
+          - generic [ref=e70]: 
+          - text: 挂账管理
+        - button " 新增挂账" [ref=e71] [cursor=pointer]:
+          - generic [ref=e72]: 
+          - text: 新增挂账
+      - generic [ref=e73]:
+        - generic [ref=e76]:
+          - generic [ref=e77]: ¥0
+          - text: 总挂账金额
+        - generic [ref=e80]:
+          - generic [ref=e81]: "0"
+          - text: 未还清笔数
+        - generic [ref=e84]:
+          - generic [ref=e85]: ¥0
+          - text: 未还金额
+      - generic [ref=e87]:
+        - combobox [ref=e89]:
+          - option "全部状态" [selected]
+          - option "未还"
+          - option "部分还"
+          - option "已还清"
+        - textbox "搜索公司名" [ref=e91]
+        - button "搜索" [ref=e93] [cursor=pointer]
+      - table [ref=e97]:
+        - rowgroup [ref=e98]:
+          - row "ID 挂账单位 订单 挂账金额 已还 剩余 状态 时间 操作" [ref=e99]:
+            - columnheader "ID" [ref=e100]
+            - columnheader "挂账单位" [ref=e101]
+            - columnheader "订单" [ref=e102]
+            - columnheader "挂账金额" [ref=e103]
+            - columnheader "已还" [ref=e104]
+            - columnheader "剩余" [ref=e105]
+            - columnheader "状态" [ref=e106]
+            - columnheader "时间" [ref=e107]
+            - columnheader "操作" [ref=e108]
+        - rowgroup [ref=e109]:
+          - row "暂无挂账记录" [ref=e110]:
+            - cell "暂无挂账记录" [ref=e111]

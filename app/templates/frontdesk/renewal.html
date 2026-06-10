@@ -1,0 +1,25 @@
+{% extends "base.html" %}{% block title %}续费 - 酒店预订系统{% endblock %}
+{% block content %}
+<div class="mb-3"><h4><i class="bi bi-arrow-repeat"></i> 入住续费</h4></div>
+<div class="row justify-content-center"><div class="col-lg-6">
+<div class="card  mb-3"><div class="card-body">
+    <h5>订单 #{{ order.id }}</h5>
+    <table class="table table-borderless small">
+        <tr><td width="80">客户</td><td><strong>{{order.customer_name}}</strong></td></tr>
+        <tr><td>房间</td><td>{{order.room.room_num}}</td></tr>
+        <tr><td>当前退房</td><td>{{order.check_out.strftime('%Y-%m-%d %H:%M') if order.check_out else '未设置'}}</td></tr>
+        <tr><td>当前费用</td><td class="text-danger fw-bold">¥{{'%.2f'|format(order.total_fee)}}</td></tr>
+        <tr><td>已续费</td><td>{{order.renewal_count}} 次</td></tr>
+    </table>
+</div></div>
+<div class="card "><div class="card-body">
+<form method="POST">
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <input type="hidden" name="order_id" value="{{order.id}}">
+    <div class="mb-3"><label class="form-label">续住天数 <span class="text-danger">*</span></label><input type="number" class="form-control" name="extend_days" min="1" max="365" value="1" required></div>
+    <button type="submit" class="btn btn-primary px-4"><i class="bi bi-check-lg"></i> 确认续费</button>
+    <a href="{{url_for('booking.booking_list')}}" class="btn btn-outline-secondary">返回</a>
+</form>
+</div></div>
+</div></div>
+{% endblock %}

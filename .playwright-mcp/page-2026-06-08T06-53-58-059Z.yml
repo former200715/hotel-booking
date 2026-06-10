@@ -1,0 +1,130 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - link " 酒店预订系统" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e7]: 
+      - generic [ref=e8]: 酒店预订系统
+    - navigation [ref=e9]:
+      - list [ref=e10]:
+        - listitem [ref=e11]:
+          - link " 控制台" [ref=e12] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e13]: 
+            - generic [ref=e14]: 控制台
+        - listitem [ref=e15]: 前台业务
+        - listitem [ref=e16]:
+          - link " 住宿登记" [ref=e17] [cursor=pointer]:
+            - /url: /frontdesk/checkin
+            - generic [ref=e18]: 
+            - generic [ref=e19]: 住宿登记
+        - listitem [ref=e20]:
+          - link " 宿费提醒" [ref=e21] [cursor=pointer]:
+            - /url: /frontdesk/reminders
+            - generic [ref=e22]: 
+            - generic [ref=e23]: 宿费提醒
+        - listitem [ref=e24]: 资产管理
+        - listitem [ref=e25]:
+          - link " 客房管理" [ref=e26] [cursor=pointer]:
+            - /url: /rooms/
+            - generic [ref=e27]: 
+            - generic [ref=e28]: 客房管理
+        - listitem [ref=e29]:
+          - link " 订单管理" [ref=e30] [cursor=pointer]:
+            - /url: /bookings/
+            - generic [ref=e31]: 
+            - generic [ref=e32]: 订单管理
+        - listitem [ref=e33]:
+          - link " 挂账管理" [ref=e34] [cursor=pointer]:
+            - /url: /credits/
+            - generic [ref=e35]: 
+            - generic [ref=e36]: 挂账管理
+        - listitem [ref=e37]: 查询统计
+        - listitem [ref=e38]:
+          - link " 数据统计" [ref=e39] [cursor=pointer]:
+            - /url: /query/stats
+            - generic [ref=e40]: 
+            - generic [ref=e41]: 数据统计
+        - listitem [ref=e42]:
+          - link " 订单查询" [ref=e43] [cursor=pointer]:
+            - /url: /query/bookings
+            - generic [ref=e44]: 
+            - generic [ref=e45]: 订单查询
+    - generic [ref=e47]:
+      - generic [ref=e49]: 
+      - generic [ref=e50]:
+        - generic [ref=e51]: former
+        - generic [ref=e52]: 前台
+  - generic [ref=e53]:
+    - banner [ref=e54]:
+      - generic [ref=e55]:
+        - button "" [ref=e56] [cursor=pointer]:
+          - generic [ref=e57]: 
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - generic [ref=e60]: 
+            - text: 2026-06-08 14:53:45
+          - generic [ref=e61]:
+            - link " former" [ref=e62] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e63]: 
+              - generic [ref=e64]: former
+            - text: 
+    - main [ref=e66]:
+      - generic [ref=e67]:
+        - heading " 客房管理" [level=4] [ref=e68]:
+          - generic [ref=e69]: 
+          - text: 客房管理
+        - generic [ref=e70]:
+          - link " 房型管理" [ref=e71] [cursor=pointer]:
+            - /url: /rooms/types
+            - generic [ref=e72]: 
+            - text: 房型管理
+          - button " 新增客房" [ref=e73] [cursor=pointer]:
+            - generic [ref=e74]: 
+            - text: 新增客房
+      - table [ref=e78]:
+        - rowgroup [ref=e79]:
+          - row "房号 房型 楼层 价格/晚 状态 备注 操作" [ref=e80]:
+            - columnheader "房号" [ref=e81]
+            - columnheader "房型" [ref=e82]
+            - columnheader "楼层" [ref=e83]
+            - columnheader "价格/晚" [ref=e84]
+            - columnheader "状态" [ref=e85]
+            - columnheader "备注" [ref=e86]
+            - columnheader "操作" [ref=e87]
+        - rowgroup [ref=e88]:
+          - row "暂无客房" [ref=e89]:
+            - cell "暂无客房" [ref=e90]
+      - dialog [active] [ref=e91]:
+        - generic [ref=e93]:
+          - generic [ref=e94]:
+            - heading "新增客房" [level=5] [ref=e95]
+            - button [ref=e96] [cursor=pointer]
+          - generic [ref=e97]:
+            - generic [ref=e98]:
+              - generic [ref=e99]: 房间号
+              - textbox [ref=e100]
+            - generic [ref=e101]:
+              - generic [ref=e102]: 房型
+              - combobox [ref=e103]:
+                - option "总统套房 (¥1888/晚)" [selected]
+                - option "标准间 (¥288/晚)"
+            - generic [ref=e104]:
+              - generic [ref=e105]: 楼层
+              - spinbutton [ref=e106]
+            - generic [ref=e107]:
+              - generic [ref=e108]: 售价（元/晚）
+              - spinbutton [ref=e109]
+            - generic [ref=e110]:
+              - generic [ref=e111]: 状态
+              - combobox [ref=e112]:
+                - option "空闲" [selected]
+                - option "已入住"
+                - option "已预订"
+                - option "维护中"
+            - generic [ref=e113]:
+              - generic [ref=e114]: 备注
+              - textbox [ref=e115]
+          - generic [ref=e116]:
+            - button "取消" [ref=e117] [cursor=pointer]
+            - button "保存" [ref=e118] [cursor=pointer]

@@ -1,0 +1,26 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]: 
+    - heading "操作员注册" [level=5] [ref=e5]
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - generic [ref=e9]: 用户名
+        - textbox "用户名" [ref=e10]:
+          - /placeholder: 登录用户名
+      - generic [ref=e11]:
+        - generic [ref=e12]: 真实姓名
+        - textbox "真实姓名" [ref=e13]
+      - generic [ref=e14]:
+        - generic [ref=e15]: 密码
+        - textbox "密码" [ref=e16]:
+          - /placeholder: 至少6个字符
+      - generic [ref=e17]:
+        - generic [ref=e18]: 确认密码
+        - textbox "确认密码" [ref=e19]:
+          - /placeholder: 再次输入密码
+      - button "注册" [ref=e21] [cursor=pointer]
+    - generic [ref=e22]:
+      - text: 已有账号？
+      - link "返回登录" [ref=e23] [cursor=pointer]:
+        - /url: /auth/login

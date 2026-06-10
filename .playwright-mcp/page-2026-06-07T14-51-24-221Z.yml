@@ -1,0 +1,156 @@
+- generic [ref=e2]:
+  - heading "jinja2.exceptions.UndefinedError" [level=1] [ref=e3]
+  - paragraph [ref=e5] [cursor=pointer]: "jinja2.exceptions.UndefinedError: 'max' is undefined"
+  - heading "Traceback (most recent call last)" [level=2] [ref=e6] [cursor=pointer]:
+    - text: Traceback
+    - emphasis [ref=e7]: (most recent call last)
+  - generic [ref=e8]:
+    - heading [level=3]
+    - list [ref=e9]:
+      - listitem [ref=e10]:
+        - generic [ref=e11]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\app.py\", line 1536, in __call__" [level=4] [ref=e12]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\app.py", line
+            - emphasis [ref=e13]: "1536"
+            - text: ", in"
+            - code [ref=e14]: __call__
+          - generic [ref=e16]: return self.wsgi_app(environ, start_response) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e17]:
+        - generic [ref=e18]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\app.py\", line 1514, in wsgi_app" [level=4] [ref=e19]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\app.py", line
+            - emphasis [ref=e20]: "1514"
+            - text: ", in"
+            - code [ref=e21]: wsgi_app
+          - generic [ref=e23]: response = self.handle_exception(e) ^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e24]:
+        - generic [ref=e25]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\app.py\", line 1511, in wsgi_app" [level=4] [ref=e26]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\app.py", line
+            - emphasis [ref=e27]: "1511"
+            - text: ", in"
+            - code [ref=e28]: wsgi_app
+          - generic [ref=e30]: response = self.full_dispatch_request() ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e31]:
+        - generic [ref=e32]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\app.py\", line 919, in full_dispatch_request" [level=4] [ref=e33]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\app.py", line
+            - emphasis [ref=e34]: "919"
+            - text: ", in"
+            - code [ref=e35]: full_dispatch_request
+          - generic [ref=e37]: rv = self.handle_user_exception(e) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e38]:
+        - generic [ref=e39]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\app.py\", line 917, in full_dispatch_request" [level=4] [ref=e40]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\app.py", line
+            - emphasis [ref=e41]: "917"
+            - text: ", in"
+            - code [ref=e42]: full_dispatch_request
+          - generic [ref=e44]: rv = self.dispatch_request() ^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e45]:
+        - generic [ref=e46]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\app.py\", line 902, in dispatch_request" [level=4] [ref=e47]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\app.py", line
+            - emphasis [ref=e48]: "902"
+            - text: ", in"
+            - code [ref=e49]: dispatch_request
+          - generic [ref=e51]: "return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args) # type: ignore[no-any-return] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+      - listitem [ref=e52]:
+        - generic [ref=e53]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask_login\\utils.py\", line 290, in decorated_view" [level=4] [ref=e54]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask_login\utils.py", line
+            - emphasis [ref=e55]: "290"
+            - text: ", in"
+            - code [ref=e56]: decorated_view
+          - generic [ref=e58] [cursor=pointer]:
+            - text: return current_app.ensure_sync(func)(*args, **kwargs) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            - img "Open an interactive python shell in this frame" [ref=e59]
+      - listitem [ref=e60]:
+        - generic [ref=e61]:
+          - heading "File \"D:\\Users\\ABC\\Desktop\\酒店预订\\app\\routes\\main.py\", line 47, in index" [level=4] [ref=e62]:
+            - text: File "D:\Users\ABC\Desktop\酒店预订\app\routes\main.py", line
+            - emphasis [ref=e63]: "47"
+            - text: ", in"
+            - code [ref=e64]: index
+          - generic [ref=e66]: return render_template('index.html', ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e67]:
+        - generic [ref=e68]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\templating.py\", line 150, in render_template" [level=4] [ref=e69]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\templating.py", line
+            - emphasis [ref=e70]: "150"
+            - text: ", in"
+            - code [ref=e71]: render_template
+          - generic [ref=e73]: return _render(app, template, context) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e74]:
+        - generic [ref=e75]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\templating.py\", line 131, in _render" [level=4] [ref=e76]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\templating.py", line
+            - emphasis [ref=e77]: "131"
+            - text: ", in"
+            - code [ref=e78]: _render
+          - generic [ref=e80]: rv = template.render(context) ^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e81]:
+        - generic [ref=e82]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\jinja2\\environment.py\", line 1295, in render" [level=4] [ref=e83]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\jinja2\environment.py", line
+            - emphasis [ref=e84]: "1295"
+            - text: ", in"
+            - code [ref=e85]: render
+          - generic [ref=e87]: self.environment.handle_exception() ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e88]:
+        - generic [ref=e89]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\jinja2\\environment.py\", line 942, in handle_exception" [level=4] [ref=e90]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\jinja2\environment.py", line
+            - emphasis [ref=e91]: "942"
+            - text: ", in"
+            - code [ref=e92]: handle_exception
+          - generic [ref=e94]: raise rewrite_traceback_stack(source=source) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e95]:
+        - generic [ref=e96]:
+          - heading "File \"D:\\Users\\ABC\\Desktop\\酒店预订\\app\\templates\\index.html\", line 1, in top-level template code" [level=4] [ref=e97]:
+            - text: File "D:\Users\ABC\Desktop\酒店预订\app\templates\index.html", line
+            - emphasis [ref=e98]: "1"
+            - text: ", in"
+            - code [ref=e99]: top-level template code
+          - generic [ref=e101]: "{% extends \"base.html\" %}"
+      - listitem [ref=e102]:
+        - generic [ref=e103]:
+          - heading "File \"D:\\Users\\ABC\\Desktop\\酒店预订\\app\\templates\\base.html\", line 186, in top-level template code" [level=4] [ref=e104]:
+            - text: File "D:\Users\ABC\Desktop\酒店预订\app\templates\base.html", line
+            - emphasis [ref=e105]: "186"
+            - text: ", in"
+            - code [ref=e106]: top-level template code
+          - generic [ref=e108]: "{% block content %}{% endblock %}"
+      - listitem [ref=e109]:
+        - generic [ref=e110]:
+          - heading "File \"D:\\Users\\ABC\\Desktop\\酒店预订\\app\\templates\\index.html\", line 76, in block 'content'" [level=4] [ref=e111]:
+            - text: File "D:\Users\ABC\Desktop\酒店预订\app\templates\index.html", line
+            - emphasis [ref=e112]: "76"
+            - text: ", in"
+            - code [ref=e113]: block 'content'
+          - generic [ref=e115]: "<div class=\"progress-bar bg-success\" style=\"width:{{ (stats.available_rooms / max(stats.total_rooms, 1)) * 100 }}%\"></div>"
+      - listitem [ref=e116]:
+        - generic [ref=e117]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\jinja2\\utils.py\", line 92, in from_obj" [level=4] [ref=e118]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\jinja2\utils.py", line
+            - emphasis [ref=e119]: "92"
+            - text: ", in"
+            - code [ref=e120]: from_obj
+          - generic [ref=e122]: "if hasattr(obj, \"jinja_pass_arg\"): ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    - blockquote [ref=e123]: "jinja2.exceptions.UndefinedError: 'max' is undefined"
+  - generic [ref=e124]:
+    - text: The debugger caught an exception in your WSGI application. You can now look at the traceback which led to the error.
+    - generic [ref=e125]:
+      - paragraph [ref=e126]: To switch between the interactive traceback and the plaintext one, you can click on the "Traceback" headline. From the text traceback you can also create a paste of it. For code execution mouse-over the frame you want to debug and click on the console icon on the right side.
+      - paragraph [ref=e127]: "You can execute arbitrary Python code in the stack frames and there are some extra helpers available for introspection:"
+      - list [ref=e128]:
+        - listitem [ref=e129]:
+          - code [ref=e130]: dump()
+          - text: shows all variables in the frame
+        - listitem [ref=e131]:
+          - code [ref=e132]: dump(obj)
+          - text: dumps all that's known about the object
+  - generic [ref=e133]:
+    - text: Brought to you by
+    - strong [ref=e134]: DON'T PANIC
+    - text: ", your friendly Werkzeug powered traceback interpreter."

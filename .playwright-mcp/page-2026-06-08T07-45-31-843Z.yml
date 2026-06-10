@@ -1,0 +1,298 @@
+- generic [ref=e2]:
+  - heading "sqlalchemy.exc.IntegrityError" [level=1] [ref=e3]
+  - paragraph [ref=e5] [cursor=pointer]: "sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) NOT NULL constraint failed: order_record.total_fee [SQL: INSERT INTO order_record (operator_id, customer_name, phone, room_id, check_in, check_out, total_fee, renewal_count, reminded, order_status, create_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)] [parameters: (1, '张三', '13800138000', 1, '2026-06-08 15:45:30.719465', '2026-06-10 00:00:00.000000', None, 0, 0, 'confirmed', '2026-06-08 15:45:30.722546')] (Background on this error at: https://sqlalche.me/e/20/gkpj)"
+  - heading "Traceback (most recent call last)" [level=2] [ref=e6] [cursor=pointer]:
+    - text: Traceback
+    - emphasis [ref=e7]: (most recent call last)
+  - generic [ref=e8]:
+    - heading [level=3]
+    - list [ref=e9]:
+      - listitem [ref=e10]:
+        - generic [ref=e11]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\engine\\base.py\", line 1969, in _exec_single_context" [level=4] [ref=e12]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\engine\base.py", line
+            - emphasis [ref=e13]: "1969"
+            - text: ", in"
+            - code [ref=e14]: _exec_single_context
+          - generic [ref=e16]: self.dialect.do_execute( ^
+      - listitem [ref=e17]:
+        - generic [ref=e18]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\engine\\default.py\", line 952, in do_execute" [level=4] [ref=e19]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\engine\default.py", line
+            - emphasis [ref=e20]: "952"
+            - text: ", in"
+            - code [ref=e21]: do_execute
+          - generic [ref=e23]: cursor.execute(statement, parameters) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e24]:
+        - generic [ref=e25]: "The above exception was the direct cause of the following exception:"
+      - listitem [ref=e26]:
+        - generic [ref=e27]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\app.py\", line 1536, in __call__" [level=4] [ref=e28]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\app.py", line
+            - emphasis [ref=e29]: "1536"
+            - text: ", in"
+            - code [ref=e30]: __call__
+          - generic [ref=e32]: return self.wsgi_app(environ, start_response) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e33]:
+        - generic [ref=e34]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\app.py\", line 1514, in wsgi_app" [level=4] [ref=e35]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\app.py", line
+            - emphasis [ref=e36]: "1514"
+            - text: ", in"
+            - code [ref=e37]: wsgi_app
+          - generic [ref=e39] [cursor=pointer]:
+            - text: response = self.handle_exception(e) ^^^^^^^^^^^^^^^^^^^^^^^^
+            - img "Open an interactive python shell in this frame" [ref=e40]
+      - listitem [ref=e41]:
+        - generic [ref=e42]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\app.py\", line 1511, in wsgi_app" [level=4] [ref=e43]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\app.py", line
+            - emphasis [ref=e44]: "1511"
+            - text: ", in"
+            - code [ref=e45]: wsgi_app
+          - generic [ref=e47]: response = self.full_dispatch_request() ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e48]:
+        - generic [ref=e49]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\app.py\", line 919, in full_dispatch_request" [level=4] [ref=e50]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\app.py", line
+            - emphasis [ref=e51]: "919"
+            - text: ", in"
+            - code [ref=e52]: full_dispatch_request
+          - generic [ref=e54]: rv = self.handle_user_exception(e) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e55]:
+        - generic [ref=e56]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\app.py\", line 917, in full_dispatch_request" [level=4] [ref=e57]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\app.py", line
+            - emphasis [ref=e58]: "917"
+            - text: ", in"
+            - code [ref=e59]: full_dispatch_request
+          - generic [ref=e61]: rv = self.dispatch_request() ^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e62]:
+        - generic [ref=e63]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask\\app.py\", line 902, in dispatch_request" [level=4] [ref=e64]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask\app.py", line
+            - emphasis [ref=e65]: "902"
+            - text: ", in"
+            - code [ref=e66]: dispatch_request
+          - generic [ref=e68]: "return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args) # type: ignore[no-any-return] ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+      - listitem [ref=e69]:
+        - generic [ref=e70]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\flask_login\\utils.py\", line 290, in decorated_view" [level=4] [ref=e71]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\flask_login\utils.py", line
+            - emphasis [ref=e72]: "290"
+            - text: ", in"
+            - code [ref=e73]: decorated_view
+          - generic [ref=e75]: return current_app.ensure_sync(func)(*args, **kwargs) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e76]:
+        - generic [ref=e77]:
+          - heading "File \"D:\\Users\\ABC\\Desktop\\酒店预订\\app\\routes\\frontdesk.py\", line 43, in checkin" [level=4] [ref=e78]:
+            - text: File "D:\Users\ABC\Desktop\酒店预订\app\routes\frontdesk.py", line
+            - emphasis [ref=e79]: "43"
+            - text: ", in"
+            - code [ref=e80]: checkin
+          - generic [ref=e82]: db.session.commit() ^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e83]:
+        - generic [ref=e84]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\orm\\scoping.py\", line 597, in commit" [level=4] [ref=e85]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\orm\scoping.py", line
+            - emphasis [ref=e86]: "597"
+            - text: ", in"
+            - code [ref=e87]: commit
+          - generic [ref=e89]: return self._proxied.commit() ^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e90]:
+        - generic [ref=e91]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\orm\\session.py\", line 2034, in commit" [level=4] [ref=e92]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\orm\session.py", line
+            - emphasis [ref=e93]: "2034"
+            - text: ", in"
+            - code [ref=e94]: commit
+          - generic [ref=e96]: trans.commit(_to_root=True) ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e97]:
+        - heading "File \"<string>\", line 2, in commit" [level=4] [ref=e99]:
+          - text: File "<string>", line
+          - emphasis [ref=e100]: "2"
+          - text: ", in"
+          - code [ref=e101]: commit
+      - listitem [ref=e102]:
+        - generic [ref=e103]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\orm\\state_changes.py\", line 137, in _go" [level=4] [ref=e104]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\orm\state_changes.py", line
+            - emphasis [ref=e105]: "137"
+            - text: ", in"
+            - code [ref=e106]: _go
+          - generic [ref=e108]: ret_value = fn(self, *arg, **kw) ^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e109]:
+        - generic [ref=e110]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\orm\\session.py\", line 1315, in commit" [level=4] [ref=e111]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\orm\session.py", line
+            - emphasis [ref=e112]: "1315"
+            - text: ", in"
+            - code [ref=e113]: commit
+          - generic [ref=e115]: self._prepare_impl() ^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e116]:
+        - heading "File \"<string>\", line 2, in _prepare_impl" [level=4] [ref=e118]:
+          - text: File "<string>", line
+          - emphasis [ref=e119]: "2"
+          - text: ", in"
+          - code [ref=e120]: _prepare_impl
+      - listitem [ref=e121]:
+        - generic [ref=e122]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\orm\\state_changes.py\", line 137, in _go" [level=4] [ref=e123]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\orm\state_changes.py", line
+            - emphasis [ref=e124]: "137"
+            - text: ", in"
+            - code [ref=e125]: _go
+          - generic [ref=e127]: ret_value = fn(self, *arg, **kw) ^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e128]:
+        - generic [ref=e129]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\orm\\session.py\", line 1290, in _prepare_impl" [level=4] [ref=e130]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\orm\session.py", line
+            - emphasis [ref=e131]: "1290"
+            - text: ", in"
+            - code [ref=e132]: _prepare_impl
+          - generic [ref=e134]: self.session.flush() ^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e135]:
+        - generic [ref=e136]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\orm\\session.py\", line 4352, in flush" [level=4] [ref=e137]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\orm\session.py", line
+            - emphasis [ref=e138]: "4352"
+            - text: ", in"
+            - code [ref=e139]: flush
+          - generic [ref=e141]: self._flush(objects) ^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e142]:
+        - generic [ref=e143]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\orm\\session.py\", line 4487, in _flush" [level=4] [ref=e144]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\orm\session.py", line
+            - emphasis [ref=e145]: "4487"
+            - text: ", in"
+            - code [ref=e146]: _flush
+          - generic [ref=e148]: "with util.safe_reraise(): ^^^^^^^^^^^^^^^^^^^"
+      - listitem [ref=e149]:
+        - generic [ref=e150]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\util\\langhelpers.py\", line 122, in __exit__" [level=4] [ref=e151]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\util\langhelpers.py", line
+            - emphasis [ref=e152]: "122"
+            - text: ", in"
+            - code [ref=e153]: __exit__
+          - generic [ref=e155]: raise exc_value.with_traceback(exc_tb) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e156]:
+        - generic [ref=e157]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\orm\\session.py\", line 4448, in _flush" [level=4] [ref=e158]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\orm\session.py", line
+            - emphasis [ref=e159]: "4448"
+            - text: ", in"
+            - code [ref=e160]: _flush
+          - generic [ref=e162]: flush_context.execute() ^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e163]:
+        - generic [ref=e164]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\orm\\unitofwork.py\", line 465, in execute" [level=4] [ref=e165]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\orm\unitofwork.py", line
+            - emphasis [ref=e166]: "465"
+            - text: ", in"
+            - code [ref=e167]: execute
+          - generic [ref=e169]: rec.execute(self) ^^^^^^^^^^^^^^^^^
+      - listitem [ref=e170]:
+        - generic [ref=e171]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\orm\\unitofwork.py\", line 641, in execute" [level=4] [ref=e172]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\orm\unitofwork.py", line
+            - emphasis [ref=e173]: "641"
+            - text: ", in"
+            - code [ref=e174]: execute
+          - generic [ref=e176]: util.preloaded.orm_persistence.save_obj( ^
+      - listitem [ref=e177]:
+        - generic [ref=e178]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\orm\\persistence.py\", line 94, in save_obj" [level=4] [ref=e179]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\orm\persistence.py", line
+            - emphasis [ref=e180]: "94"
+            - text: ", in"
+            - code [ref=e181]: save_obj
+          - generic [ref=e183]: _emit_insert_statements( ^
+      - listitem [ref=e184]:
+        - generic [ref=e185]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\orm\\persistence.py\", line 1234, in _emit_insert_statements" [level=4] [ref=e186]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\orm\persistence.py", line
+            - emphasis [ref=e187]: "1234"
+            - text: ", in"
+            - code [ref=e188]: _emit_insert_statements
+          - generic [ref=e190]: result = connection.execute(
+      - listitem [ref=e191]:
+        - generic [ref=e192]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\engine\\base.py\", line 1421, in execute" [level=4] [ref=e193]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\engine\base.py", line
+            - emphasis [ref=e194]: "1421"
+            - text: ", in"
+            - code [ref=e195]: execute
+          - generic [ref=e197]: return meth(
+      - listitem [ref=e198]:
+        - generic [ref=e199]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\sql\\elements.py\", line 526, in _execute_on_connection" [level=4] [ref=e200]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\sql\elements.py", line
+            - emphasis [ref=e201]: "526"
+            - text: ", in"
+            - code [ref=e202]: _execute_on_connection
+          - generic [ref=e204]: return connection._execute_clauseelement(
+      - listitem [ref=e205]:
+        - generic [ref=e206]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\engine\\base.py\", line 1643, in _execute_clauseelement" [level=4] [ref=e207]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\engine\base.py", line
+            - emphasis [ref=e208]: "1643"
+            - text: ", in"
+            - code [ref=e209]: _execute_clauseelement
+          - generic [ref=e211]: ret = self._execute_context(
+      - listitem [ref=e212]:
+        - generic [ref=e213]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\engine\\base.py\", line 1848, in _execute_context" [level=4] [ref=e214]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\engine\base.py", line
+            - emphasis [ref=e215]: "1848"
+            - text: ", in"
+            - code [ref=e216]: _execute_context
+          - generic [ref=e218]: return self._exec_single_context(
+      - listitem [ref=e219]:
+        - generic [ref=e220]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\engine\\base.py\", line 1988, in _exec_single_context" [level=4] [ref=e221]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\engine\base.py", line
+            - emphasis [ref=e222]: "1988"
+            - text: ", in"
+            - code [ref=e223]: _exec_single_context
+          - generic [ref=e225]: self._handle_dbapi_exception( ^
+      - listitem [ref=e226]:
+        - generic [ref=e227]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\engine\\base.py\", line 2365, in _handle_dbapi_exception" [level=4] [ref=e228]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\engine\base.py", line
+            - emphasis [ref=e229]: "2365"
+            - text: ", in"
+            - code [ref=e230]: _handle_dbapi_exception
+          - generic [ref=e232]: raise sqlalchemy_exception.with_traceback(exc_info[2]) from e ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      - listitem [ref=e233]:
+        - generic [ref=e234]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\engine\\base.py\", line 1969, in _exec_single_context" [level=4] [ref=e235]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\engine\base.py", line
+            - emphasis [ref=e236]: "1969"
+            - text: ", in"
+            - code [ref=e237]: _exec_single_context
+          - generic [ref=e239]: self.dialect.do_execute( ^
+      - listitem [ref=e240]:
+        - generic [ref=e241]:
+          - heading "File \"C:\\Users\\ABC\\AppData\\Roaming\\Python\\Python314\\site-packages\\sqlalchemy\\engine\\default.py\", line 952, in do_execute" [level=4] [ref=e242]:
+            - text: File "C:\Users\ABC\AppData\Roaming\Python\Python314\site-packages\sqlalchemy\engine\default.py", line
+            - emphasis [ref=e243]: "952"
+            - text: ", in"
+            - code [ref=e244]: do_execute
+          - generic [ref=e246]: cursor.execute(statement, parameters) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    - blockquote [ref=e247]: "sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) NOT NULL constraint failed: order_record.total_fee [SQL: INSERT INTO order_record (operator_id, customer_name, phone, room_id, check_in, check_out, total_fee, renewal_count, reminded, order_status, create_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)] [parameters: (1, '张三', '13800138000', 1, '2026-06-08 15:45:30.719465', '2026-06-10 00:00:00.000000', None, 0, 0, 'confirmed', '2026-06-08 15:45:30.722546')] (Background on this error at: https://sqlalche.me/e/20/gkpj)"
+  - generic [ref=e248]:
+    - text: The debugger caught an exception in your WSGI application. You can now look at the traceback which led to the error.
+    - generic [ref=e249]:
+      - paragraph [ref=e250]: To switch between the interactive traceback and the plaintext one, you can click on the "Traceback" headline. From the text traceback you can also create a paste of it. For code execution mouse-over the frame you want to debug and click on the console icon on the right side.
+      - paragraph [ref=e251]: "You can execute arbitrary Python code in the stack frames and there are some extra helpers available for introspection:"
+      - list [ref=e252]:
+        - listitem [ref=e253]:
+          - code [ref=e254]: dump()
+          - text: shows all variables in the frame
+        - listitem [ref=e255]:
+          - code [ref=e256]: dump(obj)
+          - text: dumps all that's known about the object
+  - generic [ref=e257]:
+    - text: Brought to you by
+    - strong [ref=e258]: DON'T PANIC
+    - text: ", your friendly Werkzeug powered traceback interpreter."

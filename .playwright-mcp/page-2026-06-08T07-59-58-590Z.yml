@@ -1,0 +1,189 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - generic [ref=e4]:
+      - link " 酒店预订系统" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: 
+        - generic [ref=e8]: 酒店预订系统
+      - button "" [ref=e9] [cursor=pointer]:
+        - generic [ref=e10]: 
+    - navigation [ref=e11]:
+      - list [ref=e12]:
+        - listitem [ref=e13]:
+          - link " 控制台" [ref=e14] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e15]: 
+            - generic [ref=e16]: 控制台
+        - listitem [ref=e17]: 前台业务
+        - listitem [ref=e18]:
+          - link " 住宿登记" [ref=e19] [cursor=pointer]:
+            - /url: /frontdesk/checkin
+            - generic [ref=e20]: 
+            - generic [ref=e21]: 住宿登记
+        - listitem [ref=e22]:
+          - link " 宿费提醒" [ref=e23] [cursor=pointer]:
+            - /url: /frontdesk/reminders
+            - generic [ref=e24]: 
+            - generic [ref=e25]: 宿费提醒
+        - listitem [ref=e26]: 资产管理
+        - listitem [ref=e27]:
+          - link " 客房管理" [ref=e28] [cursor=pointer]:
+            - /url: /rooms/
+            - generic [ref=e29]: 
+            - generic [ref=e30]: 客房管理
+        - listitem [ref=e31]:
+          - link " 订单管理" [ref=e32] [cursor=pointer]:
+            - /url: /bookings/
+            - generic [ref=e33]: 
+            - generic [ref=e34]: 订单管理
+        - listitem [ref=e35]:
+          - link " 挂账管理" [ref=e36] [cursor=pointer]:
+            - /url: /credits/
+            - generic [ref=e37]: 
+            - generic [ref=e38]: 挂账管理
+        - listitem [ref=e39]: 查询统计
+        - listitem [ref=e40]:
+          - link " 数据统计" [ref=e41] [cursor=pointer]:
+            - /url: /query/stats
+            - generic [ref=e42]: 
+            - generic [ref=e43]: 数据统计
+        - listitem [ref=e44]:
+          - link " 订单查询" [ref=e45] [cursor=pointer]:
+            - /url: /query/bookings
+            - generic [ref=e46]: 
+            - generic [ref=e47]: 订单查询
+    - generic [ref=e49]:
+      - generic [ref=e51]: 
+      - generic [ref=e52]:
+        - generic [ref=e53]: former
+        - generic [ref=e54]: 前台
+  - generic [ref=e55]:
+    - banner [ref=e56]:
+      - generic [ref=e57]:
+        - button "" [ref=e58] [cursor=pointer]:
+          - generic [ref=e59]: 
+        - generic [ref=e60]:
+          - generic [ref=e61]:
+            - generic [ref=e62]: 
+            - text: 2026-06-08 15:59:58
+          - generic [ref=e63]:
+            - link " former" [ref=e64] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e65]: 
+              - generic [ref=e66]: former
+            - text: 
+    - main [ref=e68]:
+      - generic [ref=e70]:
+        - heading "控制台" [level=4] [ref=e71]
+        - text: 今日新增 2 单
+      - generic [ref=e72]:
+        - generic [ref=e75]:
+          - generic [ref=e77]: 
+          - generic [ref=e78]: ¥676
+          - generic [ref=e79]: 总营收
+        - generic [ref=e82]:
+          - generic [ref=e84]: 
+          - generic [ref=e85]: "2"
+          - generic [ref=e86]: 总订单数
+        - generic [ref=e89]:
+          - generic [ref=e91]: 
+          - generic [ref=e92]: "2"
+          - generic [ref=e93]: 今日新增
+        - generic [ref=e96]:
+          - generic [ref=e98]: 
+          - generic [ref=e99]: "0"
+          - generic [ref=e100]: 未还挂账
+      - generic [ref=e101]:
+        - generic [ref=e103]:
+          - heading " 房间概览" [level=6] [ref=e105]:
+            - generic [ref=e106]: 
+            - text: 房间概览
+          - generic [ref=e107]:
+            - generic [ref=e108]:
+              - generic [ref=e109]: 空闲
+              - generic [ref=e110]: "2"
+            - generic [ref=e113]:
+              - generic [ref=e114]: 已入住
+              - generic [ref=e115]: "0"
+            - generic [ref=e117]:
+              - generic [ref=e118]: 维护中
+              - generic [ref=e119]: "0"
+            - generic [ref=e121]:
+              - text: 总房间数
+              - strong [ref=e122]: "2"
+              - text: 间
+        - generic [ref=e124]:
+          - heading " 订单状态" [level=6] [ref=e126]:
+            - generic [ref=e127]: 
+            - text: 订单状态
+          - generic [ref=e128]:
+            - generic [ref=e129]:
+              - generic [ref=e131]:
+                - generic [ref=e132]: "0"
+                - generic [ref=e133]: 已确认
+              - generic [ref=e135]:
+                - generic [ref=e136]: "2"
+                - generic [ref=e137]: 已完成
+            - generic [ref=e139]:
+              - generic [ref=e140]: 完成率
+              - generic [ref=e141]: 100.0%
+        - generic [ref=e145]:
+          - heading " 系统概况" [level=6] [ref=e147]:
+            - generic [ref=e148]: 
+            - text: 系统概况
+          - list [ref=e150]:
+            - listitem [ref=e151]:
+              - generic [ref=e152]:
+                - generic [ref=e153]: 
+                - text: 操作员
+              - strong [ref=e154]: "2"
+            - listitem [ref=e155]:
+              - generic [ref=e156]:
+                - generic [ref=e157]: 
+                - text: 角色
+              - strong [ref=e158]: "2"
+            - listitem [ref=e159]:
+              - generic [ref=e160]:
+                - generic [ref=e161]: 
+                - text: 房型
+              - strong [ref=e162]: "2"
+            - listitem [ref=e163]:
+              - generic [ref=e164]:
+                - generic [ref=e165]: 
+                - text: 未还挂账
+              - strong [ref=e166]: "0"
+      - generic [ref=e167]:
+        - generic [ref=e168]:
+          - heading " 最近订单" [level=6] [ref=e169]:
+            - generic [ref=e170]: 
+            - text: 最近订单
+          - link "查看全部" [ref=e171] [cursor=pointer]:
+            - /url: /bookings/
+        - table [ref=e174]:
+          - rowgroup [ref=e175]:
+            - row "订单ID 客户 房间 入住时间 费用 状态" [ref=e176]:
+              - columnheader "订单ID" [ref=e177]
+              - columnheader "客户" [ref=e178]
+              - columnheader "房间" [ref=e179]
+              - columnheader "入住时间" [ref=e180]
+              - columnheader "费用" [ref=e181]
+              - columnheader "状态" [ref=e182]
+          - rowgroup [ref=e183]:
+            - row "#2 邹浩轩 201 06-08 15:54 ¥388 已完成" [ref=e184]:
+              - cell "#2" [ref=e185]:
+                - strong [ref=e186]: "#2"
+              - cell "邹浩轩" [ref=e187]
+              - cell "201" [ref=e188]
+              - cell "06-08 15:54" [ref=e189]
+              - cell "¥388" [ref=e190]
+              - cell "已完成" [ref=e191]:
+                - generic [ref=e192]: 已完成
+            - row "#1 张三 101 06-08 15:52 ¥288 已完成" [ref=e193]:
+              - cell "#1" [ref=e194]:
+                - strong [ref=e195]: "#1"
+              - cell "张三" [ref=e196]
+              - cell "101" [ref=e197]
+              - cell "06-08 15:52" [ref=e198]
+              - cell "¥288" [ref=e199]
+              - cell "已完成" [ref=e200]:
+                - generic [ref=e201]: 已完成

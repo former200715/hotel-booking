@@ -1,0 +1,141 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - generic [ref=e4]:
+      - link "" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: 
+      - button "" [ref=e8] [cursor=pointer]:
+        - generic [ref=e9]: 
+    - navigation [ref=e10]:
+      - list [ref=e11]:
+        - listitem [ref=e12]:
+          - link " 控制台" [ref=e13] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e14]: 
+            - generic [ref=e15]: 控制台
+        - listitem [ref=e16]: 前台业务
+        - listitem [ref=e17]:
+          - link " 住宿登记" [ref=e18] [cursor=pointer]:
+            - /url: /frontdesk/checkin
+            - generic [ref=e19]: 
+            - generic [ref=e20]: 住宿登记
+        - listitem [ref=e21]:
+          - link " 宿费提醒" [ref=e22] [cursor=pointer]:
+            - /url: /frontdesk/reminders
+            - generic [ref=e23]: 
+            - generic [ref=e24]: 宿费提醒
+        - listitem [ref=e25]: 资产管理
+        - listitem [ref=e26]:
+          - link " 客房管理" [ref=e27] [cursor=pointer]:
+            - /url: /rooms/
+            - generic [ref=e28]: 
+            - generic [ref=e29]: 客房管理
+        - listitem [ref=e30]:
+          - link " 订单管理" [ref=e31] [cursor=pointer]:
+            - /url: /bookings/
+            - generic [ref=e32]: 
+            - generic [ref=e33]: 订单管理
+        - listitem [ref=e34]:
+          - link " 挂账管理" [ref=e35] [cursor=pointer]:
+            - /url: /credits/
+            - generic [ref=e36]: 
+            - generic [ref=e37]: 挂账管理
+        - listitem [ref=e38]: 查询统计
+        - listitem [ref=e39]:
+          - link " 数据统计" [ref=e40] [cursor=pointer]:
+            - /url: /query/stats
+            - generic [ref=e41]: 
+            - generic [ref=e42]: 数据统计
+        - listitem [ref=e43]:
+          - link " 订单查询" [ref=e44] [cursor=pointer]:
+            - /url: /query/bookings
+            - generic [ref=e45]: 
+            - generic [ref=e46]: 订单查询
+        - listitem [ref=e47]: 系统管理
+        - listitem [ref=e48]:
+          - link " 操作员管理" [ref=e49] [cursor=pointer]:
+            - /url: /admin/users
+            - generic [ref=e50]: 
+            - generic [ref=e51]: 操作员管理
+        - listitem [ref=e52]:
+          - link " 角色权限" [ref=e53] [cursor=pointer]:
+            - /url: /admin/roles
+            - generic [ref=e54]: 
+            - generic [ref=e55]: 角色权限
+        - listitem [ref=e56]:
+          - link " 系统设置" [ref=e57] [cursor=pointer]:
+            - /url: /admin/settings
+            - generic [ref=e58]: 
+            - generic [ref=e59]: 系统设置
+    - generic [ref=e61]:
+      - generic [ref=e63]: 
+      - generic [ref=e64]:
+        - generic [ref=e65]: former
+        - generic [ref=e66]: 前台
+  - generic [ref=e67]:
+    - banner [ref=e68]:
+      - generic [ref=e69]:
+        - button "" [ref=e70] [cursor=pointer]:
+          - generic [ref=e71]: 
+        - generic [ref=e72]:
+          - text: 
+          - generic [ref=e73]:
+            - link "" [ref=e74] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e75]: 
+            - text: 
+    - main [ref=e76]:
+      - generic [ref=e77]:
+        - heading " 房态面板" [level=4] [ref=e78]:
+          - generic [ref=e79]: 
+          - text: 房态面板
+        - link " 客房管理" [ref=e80] [cursor=pointer]:
+          - /url: /rooms/manage
+          - generic [ref=e81]: 
+          - text: 客房管理
+      - generic [ref=e82]:
+        - generic [ref=e85]:
+          - generic [ref=e86]: "2"
+          - text: 总计
+        - generic [ref=e89]:
+          - generic [ref=e90]: "2"
+          - text: 空闲
+        - generic [ref=e93]:
+          - generic [ref=e94]: "0"
+          - text: 入住
+        - generic [ref=e97]:
+          - generic [ref=e98]: "0"
+          - text: 预订
+        - generic [ref=e101]:
+          - generic [ref=e102]: "0"
+          - text: 维护
+      - generic [ref=e105]:
+        - combobox [ref=e107]:
+          - option "全部房型" [selected]
+          - option "总统套房"
+          - option "标准间"
+        - combobox [ref=e109]:
+          - option "全部楼层" [selected]
+          - option "1层"
+          - option "2层"
+        - combobox [ref=e111]:
+          - option "全部状态" [selected]
+          - option "空闲"
+          - option "已入住"
+          - option "已预订"
+          - option "维护中"
+      - generic [ref=e112]:
+        - link "101 标准间 1F · ¥288 空闲" [ref=e114] [cursor=pointer]:
+          - /url: /rooms/1
+          - generic [ref=e116]:
+            - generic [ref=e117]: "101"
+            - generic [ref=e118]: 标准间
+            - generic [ref=e119]: 1F · ¥288
+            - generic [ref=e120]: 空闲
+        - link "201 标准间 2F · ¥388 空闲" [ref=e122] [cursor=pointer]:
+          - /url: /rooms/2
+          - generic [ref=e124]:
+            - generic [ref=e125]: "201"
+            - generic [ref=e126]: 标准间
+            - generic [ref=e127]: 2F · ¥388
+            - generic [ref=e128]: 空闲

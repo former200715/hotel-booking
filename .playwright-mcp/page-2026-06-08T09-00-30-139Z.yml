@@ -1,0 +1,8 @@
+- generic [ref=e2]:
+  - heading "酒店预订管理系统 — 功能模块图" [level=1] [ref=e3]
+  - generic [ref=e5]:
+    - generic [ref=e6]: 核心业务
+    - generic [ref=e8]: 前台操作
+    - generic [ref=e10]: 查询分析
+    - generic [ref=e12]: 管理后台
+    - generic [ref=e14]: 辅助功能

@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+hotel_booking.db
+.env
+*.png
+*.jpg
+docs/
+pyrightconfig.json
+venv/

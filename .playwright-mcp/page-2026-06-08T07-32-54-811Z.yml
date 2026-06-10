@@ -1,0 +1,165 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - generic [ref=e4]:
+      - link " 酒店预订系统" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: 
+        - generic [ref=e8]: 酒店预订系统
+      - button "" [ref=e9] [cursor=pointer]:
+        - generic [ref=e10]: 
+    - navigation [ref=e11]:
+      - list [ref=e12]:
+        - listitem [ref=e13]:
+          - link " 控制台" [ref=e14] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e15]: 
+            - generic [ref=e16]: 控制台
+        - listitem [ref=e17]: 前台业务
+        - listitem [ref=e18]:
+          - link " 住宿登记" [ref=e19] [cursor=pointer]:
+            - /url: /frontdesk/checkin
+            - generic [ref=e20]: 
+            - generic [ref=e21]: 住宿登记
+        - listitem [ref=e22]:
+          - link " 宿费提醒" [ref=e23] [cursor=pointer]:
+            - /url: /frontdesk/reminders
+            - generic [ref=e24]: 
+            - generic [ref=e25]: 宿费提醒
+        - listitem [ref=e26]: 资产管理
+        - listitem [ref=e27]:
+          - link " 客房管理" [ref=e28] [cursor=pointer]:
+            - /url: /rooms/
+            - generic [ref=e29]: 
+            - generic [ref=e30]: 客房管理
+        - listitem [ref=e31]:
+          - link " 订单管理" [ref=e32] [cursor=pointer]:
+            - /url: /bookings/
+            - generic [ref=e33]: 
+            - generic [ref=e34]: 订单管理
+        - listitem [ref=e35]:
+          - link " 挂账管理" [ref=e36] [cursor=pointer]:
+            - /url: /credits/
+            - generic [ref=e37]: 
+            - generic [ref=e38]: 挂账管理
+        - listitem [ref=e39]: 查询统计
+        - listitem [ref=e40]:
+          - link " 数据统计" [ref=e41] [cursor=pointer]:
+            - /url: /query/stats
+            - generic [ref=e42]: 
+            - generic [ref=e43]: 数据统计
+        - listitem [ref=e44]:
+          - link " 订单查询" [ref=e45] [cursor=pointer]:
+            - /url: /query/bookings
+            - generic [ref=e46]: 
+            - generic [ref=e47]: 订单查询
+    - generic [ref=e49]:
+      - generic [ref=e51]: 
+      - generic [ref=e52]:
+        - generic [ref=e53]: former
+        - generic [ref=e54]: 前台
+  - generic [ref=e55]:
+    - banner [ref=e56]:
+      - generic [ref=e57]:
+        - button "" [ref=e58] [cursor=pointer]:
+          - generic [ref=e59]: 
+        - generic [ref=e60]:
+          - generic [ref=e61]:
+            - generic [ref=e62]: 
+            - text: 2026-06-08 15:32:42
+          - generic [ref=e63]:
+            - link " former" [ref=e64] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e65]: 
+              - generic [ref=e66]: former
+            - text: 
+    - main [ref=e68]:
+      - generic [ref=e69]:
+        - generic [ref=e70]:
+          - link "" [ref=e71] [cursor=pointer]:
+            - /url: /rooms/
+            - generic [ref=e72]: 
+          - heading " 客房管理" [level=4] [ref=e73]:
+            - generic [ref=e74]: 
+            - text: 客房管理
+        - generic [ref=e75]:
+          - link " 房型管理" [ref=e76] [cursor=pointer]:
+            - /url: /rooms/types
+            - generic [ref=e77]: 
+            - text: 房型管理
+          - button " 新增客房" [ref=e78] [cursor=pointer]:
+            - generic [ref=e79]: 
+            - text: 新增客房
+      - table [ref=e83]:
+        - rowgroup [ref=e84]:
+          - row "房号 房型 楼层 价格/晚 状态 备注 操作" [ref=e85]:
+            - columnheader "房号" [ref=e86]
+            - columnheader "房型" [ref=e87]
+            - columnheader "楼层" [ref=e88]
+            - columnheader "价格/晚" [ref=e89]
+            - columnheader "状态" [ref=e90]
+            - columnheader "备注" [ref=e91]
+            - columnheader "操作" [ref=e92]
+        - rowgroup [ref=e93]:
+          - row "101 标准间 1F ¥288 空闲 -  " [ref=e94]:
+            - cell "101" [ref=e95]:
+              - strong [ref=e96]: "101"
+            - cell "标准间" [ref=e97]
+            - cell "1F" [ref=e98]
+            - cell "¥288" [ref=e99]
+            - cell "空闲" [ref=e100]:
+              - generic [ref=e101]: 空闲
+            - cell "-" [ref=e102]
+            - cell " " [ref=e103]:
+              - generic [ref=e104]:
+                - button "" [ref=e105] [cursor=pointer]:
+                  - generic [ref=e106]: 
+                - button "" [ref=e108] [cursor=pointer]:
+                  - generic [ref=e109]: 
+          - row "201 标准间 2F ¥388 空闲 -  " [ref=e110]:
+            - cell "201" [ref=e111]:
+              - strong [ref=e112]: "201"
+            - cell "标准间" [ref=e113]
+            - cell "2F" [ref=e114]
+            - cell "¥388" [ref=e115]
+            - cell "空闲" [ref=e116]:
+              - generic [ref=e117]: 空闲
+            - cell "-" [ref=e118]
+            - cell " " [ref=e119]:
+              - generic [ref=e120]:
+                - button "" [ref=e121] [cursor=pointer]:
+                  - generic [ref=e122]: 
+                - button "" [ref=e124] [cursor=pointer]:
+                  - generic [ref=e125]: 
+      - dialog [active] [ref=e126]:
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - heading "新增客房" [level=5] [ref=e130]
+            - button [ref=e131] [cursor=pointer]
+          - generic [ref=e132]:
+            - generic [ref=e133]:
+              - generic [ref=e134]: 房间号
+              - textbox [ref=e135]
+            - generic [ref=e136]:
+              - generic [ref=e137]: 房型
+              - combobox [ref=e138]:
+                - option "总统套房 (¥1888/晚)" [selected]
+                - option "标准间 (¥288/晚)"
+            - generic [ref=e139]:
+              - generic [ref=e140]: 楼层
+              - spinbutton [ref=e141]
+            - generic [ref=e142]:
+              - generic [ref=e143]: 售价（元/晚）
+              - spinbutton [ref=e144]
+            - generic [ref=e145]:
+              - generic [ref=e146]: 状态
+              - combobox [ref=e147]:
+                - option "空闲" [selected]
+                - option "已入住"
+                - option "已预订"
+                - option "维护中"
+            - generic [ref=e148]:
+              - generic [ref=e149]: 备注
+              - textbox [ref=e150]
+          - generic [ref=e151]:
+            - button "取消" [ref=e152] [cursor=pointer]
+            - button "保存" [ref=e153] [cursor=pointer]

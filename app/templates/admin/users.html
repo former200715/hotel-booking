@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% block title %}操作员管理 - 酒店预订系统{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0"><i class="bi bi-people"></i> 操作员管理</h4>
+    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createUserModal">
+        <i class="bi bi-plus-lg"></i> 新增操作员
+    </button>
+</div>
+
+<div class="card ">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>用户名</th>
+                        <th>姓名</th>
+                        <th>角色</th>
+                        <th>状态</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td><strong>{{ user.username }}</strong></td>
+                        <td>{{ user.name }}</td>
+                        <td><span class="badge bg-info">{{ user.role.role_name if user.role else '-' }}</span></td>
+                        <td>
+                            {% if user.status == 'enabled' %}
+                            <span class="badge bg-success">启用</span>
+                            {% else %}
+                            <span class="badge bg-danger">禁用</span>
+                            {% endif %}
+                        </td>
+                        <td class="small text-muted">{{ user.create_time.strftime('%Y-%m-%d %H:%M') if user.create_time else '-' }}</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <!-- 编辑按钮 -->
+                                <button class="btn btn-outline-secondary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#editUserModal{{ user.id }}">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <!-- 重置密码 -->
+                                <button class="btn btn-outline-warning btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#resetPwdModal{{ user.id }}">
+                                    <i class="bi bi-key"></i>
+                                </button>
+                                <!-- 删除 -->
+                                {% if user.id != current_user.id %}
+                                <form method="POST" action="{{ url_for('admin.user_delete', user_id=user.id) }}"
+                                      onsubmit="return confirm('确定要删除操作员 {{ user.name }} 吗？');" class="d-inline">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="7" class="text-center text-muted py-4">暂无可管理的操作员</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ======== 新增操作员弹窗 ======== -->
+<div class="modal fade" id="createUserModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="{{ url_for('admin.user_create') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="bi bi-person-plus"></i> 新增操作员</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">用户名</label>
+                        <input type="text" class="form-control" name="username" required placeholder="登录用户名">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">真实姓名</label>
+                        <input type="text" class="form-control" name="name" required placeholder="真实姓名">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">登录密码</label>
+                        <input type="password" class="form-control" name="password" required placeholder="至少6个字符" minlength="6">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">所属角色</label>
+                        <select class="form-select" name="role_id" required>
+                            <option value="">-- 选择角色 --</option>
+                            {% for r in roles %}
+                            <option value="{{ r.id }}">{{ r.role_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">账号状态</label>
+                        <select class="form-select" name="status">
+                            <option value="enabled">启用</option>
+                            <option value="disabled">禁用</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">创建</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ======== 每个操作员的编辑 & 重置密码弹窗 ======== -->
+{% for user in users %}
+<!-- 编辑弹窗 -->
+<div class="modal fade" id="editUserModal{{ user.id }}" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="{{ url_for('admin.user_edit', user_id=user.id) }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="modal-header">
+                    <h5 class="modal-title">编辑操作员 — {{ user.name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">用户名</label>
+                        <input type="text" class="form-control" name="username" value="{{ user.username }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">真实姓名</label>
+                        <input type="text" class="form-control" name="name" value="{{ user.name }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">所属角色</label>
+                        <select class="form-select" name="role_id" required>
+                            {% for r in roles %}
+                            <option value="{{ r.id }}" {% if r.id == user.role_id %}selected{% endif %}>
+                                {{ r.role_name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">账号状态</label>
+                        <select class="form-select" name="status">
+                            <option value="enabled" {% if user.status == 'enabled' %}selected{% endif %}>启用</option>
+                            <option value="disabled" {% if user.status == 'disabled' %}selected{% endif %}>禁用</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">保存更改</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 重置密码弹窗 -->
+<div class="modal fade" id="resetPwdModal{{ user.id }}" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <form method="POST" action="{{ url_for('admin.user_reset_password', user_id=user.id) }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="modal-header">
+                    <h5 class="modal-title">重置密码 — {{ user.name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">新密码</label>
+                        <input type="password" class="form-control" name="new_password" required
+                               placeholder="至少6个字符" minlength="6">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">确认新密码</label>
+                        <input type="password" class="form-control" name="confirm_password" required
+                               placeholder="再次输入新密码" minlength="6">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-warning">重置密码</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% block title %}角色权限管理 - 酒店预订系统{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0"><i class="bi bi-shield-lock"></i> 角色权限管理</h4>
+    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createRoleModal">
+        <i class="bi bi-plus-lg"></i> 新增角色
+    </button>
+</div>
+
+<!-- 角色卡片列表 -->
+<div class="row g-4">
+    {% for role in roles %}
+    <div class="col-md-6 col-lg-4">
+        <div class="card  h-100">
+            <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+                <h6 class="mb-0"><i class="bi bi-shield-fill text-primary"></i> {{ role.role_name }}</h6>
+                <span class="badge bg-light text-dark">{{ role.users.count() }}人</span>
+            </div>
+            <div class="card-body">
+                <div class="mb-2 small text-muted">拥有权限：</div>
+                {% set perm_str = role.permissions or '[]' %}
+                {% if perm_str == '[]' or not perm_str %}
+                <span class="text-muted small">暂无权限</span>
+                {% else %}
+                <div class="d-flex flex-wrap gap-1">
+                    {% for perm_pair in permissions_list %}
+                        {% if perm_pair[0] in perm_str %}
+                        <span class="badge bg-light text-dark small">{{ perm_pair[0] }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-footer bg-white border-0">
+                <div class="d-flex gap-1">
+                    <button class="btn btn-outline-secondary btn-sm"
+                            data-bs-toggle="modal" data-bs-target="#editRoleModal{{ role.id }}">
+                        <i class="bi bi-pencil"></i> 编辑
+                    </button>
+                    {% if role.users.count() == 0 %}
+                    <form method="POST" action="{{ url_for('admin.role_delete', role_id=role.id) }}"
+                          onsubmit="return confirm('确定要删除角色 {{ role.role_name }} 吗？');" class="d-inline">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-trash"></i> 删除
+                        </button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12 text-center py-5 text-muted">
+        <i class="bi bi-shield-x display-1"></i>
+        <p class="mt-3">暂无角色，请先创建</p>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- ======== 新增角色弹窗 ======== -->
+<div class="modal fade" id="createRoleModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form method="POST" action="{{ url_for('admin.role_create') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="bi bi-shield-plus"></i> 新增角色</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">角色名称</label>
+                        <input type="text" class="form-control" name="role_name" required
+                               placeholder="例如：前台、经理、管理员">
+                    </div>
+                    <label class="form-label">权限分配</label>
+                    <div class="row g-2">
+                        {% for perm_key, perm_label in permissions_list %}
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox"
+                                       name="perm_{{ perm_key }}" id="create_perm_{{ perm_key }}">
+                                <label class="form-check-label small" for="create_perm_{{ perm_key }}">
+                                    <strong>{{ perm_key }}</strong> — {{ perm_label }}
+                                </label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">创建角色</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ======== 编辑角色弹窗（每个角色一个） ======== -->
+{% for role in roles %}
+<div class="modal fade" id="editRoleModal{{ role.id }}" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form method="POST" action="{{ url_for('admin.role_edit', role_id=role.id) }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="modal-header">
+                    <h5 class="modal-title">编辑角色 — {{ role.role_name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">角色名称</label>
+                        <input type="text" class="form-control" name="role_name"
+                               value="{{ role.role_name }}" required>
+                    </div>
+                    <label class="form-label">权限分配</label>
+                    <div class="row g-2">
+                        {% for perm_key, perm_label in permissions_list %}
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox"
+                                       name="perm_{{ perm_key }}"
+                                       id="edit_{{ role.id }}_perm_{{ perm_key }}"
+                                       {% if perm_key in role.permissions %}checked{% endif %}>
+                                <label class="form-check-label small"
+                                       for="edit_{{ role.id }}_perm_{{ perm_key }}">
+                                    <strong>{{ perm_key }}</strong> — {{ perm_label }}
+                                </label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">保存更改</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// 初始化角色弹窗时确保 CSRF token 存在
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.modal form').forEach(function(form) {
+        if (!form.querySelector('input[name="csrf_token"]')) {
+            const csrf = document.createElement('input');
+            csrf.type = 'hidden';
+            csrf.name = 'csrf_token';
+            csrf.value = '{{ csrf_token() }}';
+            form.appendChild(csrf);
+        }
+    });
+});
+</script>
+{% endblock %}

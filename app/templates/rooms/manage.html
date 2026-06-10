@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}客房管理 - 酒店预订系统{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex align-items-center gap-2">
+        <a href="{{ url_for('room.list_rooms') }}" class="btn btn-outline-secondary btn-sm" title="返回房态面板"><i class="bi bi-arrow-left"></i></a>
+        <h4 class="mb-0"><i class="bi bi-gear"></i> 客房管理</h4>
+    </div>
+    <div><a href="{{url_for('room.type_list')}}" class="btn btn-outline-secondary btn-sm me-1"><i class="bi bi-tags"></i> 房型管理</a><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roomModal" onclick="resetRoomForm()"><i class="bi bi-plus-lg"></i> 新增客房</button></div>
+</div>
+<div class="card "><div class="card-body p-0"><div class="table-responsive">
+<table class="table table-hover mb-0">
+    <thead class="table-light"><tr><th>房号</th><th>房型</th><th>楼层</th><th>价格/晚</th><th>状态</th><th>备注</th><th>操作</th></tr></thead>
+    <tbody>
+    {% for r in rooms %}
+    <tr>
+        <td><strong>{{r.room_num}}</strong></td><td>{{r.room_type.type_name if r.room_type else '-'}}</td><td>{{r.floor}}F</td>
+        <td class="text-danger">¥{{'%.0f'|format(r.price)}}</td>
+        <td>{% if r.status=='available' %}<span class="badge bg-success">空闲</span>{% elif r.status=='occupied' %}<span class="badge bg-danger">入住</span>{% elif r.status=='reserved' %}<span class="badge bg-warning text-dark">预订</span>{% else %}<span class="badge bg-secondary">维护</span>{% endif %}</td>
+        <td class="small text-muted">{{r.remark or '-'}}</td>
+        <td><div class="d-flex gap-1">
+            <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#roomModal"
+                    onclick="editRoom({{r.id}},'{{r.room_num}}',{{r.type_id}},{{r.floor}},{{r.price}},'{{r.status}}','{{r.remark or ''}}')"><i class="bi bi-pencil"></i></button>
+            {% if r.order_records.count()==0 %}
+            <form method="POST" action="{{url_for('room.room_delete', room_id=r.id)}}" onsubmit="return confirm('确定删除 {{r.room_num}}？')"><input type="hidden" name="csrf_token" value="{{csrf_token()}}"><button class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button></form>
+            {% endif %}
+        </div></td>
+    </tr>
+    {% else %}<tr><td colspan="7" class="text-center py-4 text-muted">暂无客房</td></tr>{% endfor %}
+    </tbody>
+</table></div></div></div>
+
+<!-- 弹窗 -->
+<div class="modal fade" id="roomModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content">
+<form id="roomForm" method="POST" action="{{url_for('room.room_create')}}"><input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+<div class="modal-header"><h5 class="modal-title" id="roomModalTitle">新增客房</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+<div class="modal-body">
+    <div class="mb-3"><label class="form-label">房间号</label><input type="text" class="form-control" name="room_num" id="room_num" required></div>
+    <div class="mb-3"><label class="form-label">房型</label><select class="form-select" name="type_id" id="type_id" required>{% for t in types %}<option value="{{t.id}}">{{t.type_name}} (¥{{'%.0f'|format(t.base_price)}}/晚)</option>{% endfor %}</select></div>
+    <div class="mb-3"><label class="form-label">楼层</label><input type="number" class="form-control" name="floor" id="floor" min="1" required></div>
+    <div class="mb-3"><label class="form-label">售价（元/晚）</label><input type="number" step="0.01" class="form-control" name="price" id="price" required></div>
+    <div class="mb-3"><label class="form-label">状态</label><select class="form-select" name="status" id="status"><option value="available">空闲</option><option value="occupied">已入住</option><option value="reserved">已预订</option><option value="maintenance">维护中</option></select></div>
+    <div class="mb-3"><label class="form-label">备注</label><textarea class="form-control" name="remark" id="remark" rows="2"></textarea></div>
+</div>
+<div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button><button type="submit" class="btn btn-primary">保存</button></div>
+</form></div></div></div>
+{% endblock %}
+{% block extra_js %}
+<script>
+function resetRoomForm(){document.getElementById('roomForm').action='{{url_for("room.room_create")}}';document.getElementById('roomModalTitle').textContent='新增客房';document.getElementById('room_num').value='';document.getElementById('floor').value='';document.getElementById('price').value='';document.getElementById('remark').value='';}
+function editRoom(id,num,tid,floor,price,status,remark){document.getElementById('roomForm').action='{{url_for("room.room_edit", room_id=999)}}'.replace('999',id);document.getElementById('roomModalTitle').textContent='编辑客房 — '+num;document.getElementById('room_num').value=num;document.getElementById('type_id').value=tid;document.getElementById('floor').value=floor;document.getElementById('price').value=price;document.getElementById('status').value=status;document.getElementById('remark').value=remark;}
+</script>
+{% endblock %}

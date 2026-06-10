@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)",
+      "Bash(pnpm *)",
+      "Bash(node *)",
+      "Bash(npx *)",
+      "Bash(gh search:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(git clone:*)",
+      "Bash(gh repo:*)",
+      "Bash(for skill:*)",
+      "Bash(do echo:*)",
+      "Bash(claude mcp:*)",
+      "Bash(npx -y @anthropic-ai/mcp-server-playwright@latest --help)",
+      "Bash(npx -y @playwright/mcp --help 2>&1 | head -20)",
+      "Bash(pip install:*)",
+      "Bash(npm install:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_console_messages"
+    ]
+  }
+}

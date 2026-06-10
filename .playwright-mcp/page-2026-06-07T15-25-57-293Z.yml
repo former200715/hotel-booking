@@ -1,0 +1,95 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - link " 酒店预订系统" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e7]: 
+      - generic [ref=e8]: 酒店预订系统
+    - navigation [ref=e9]:
+      - list [ref=e10]:
+        - listitem [ref=e11]:
+          - link " 控制台" [ref=e12] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e13]: 
+            - generic [ref=e14]: 控制台
+        - listitem [ref=e15]:
+          - link " 客房管理" [ref=e16] [cursor=pointer]:
+            - /url: /rooms/
+            - generic [ref=e17]: 
+            - generic [ref=e18]: 客房管理
+        - listitem [ref=e19]:
+          - link " 订单管理" [ref=e20] [cursor=pointer]:
+            - /url: /bookings/
+            - generic [ref=e21]: 
+            - generic [ref=e22]: 订单管理
+        - listitem [ref=e23]: 查询统计
+        - listitem [ref=e24]:
+          - link " 数据统计" [ref=e25] [cursor=pointer]:
+            - /url: /query/stats
+            - generic [ref=e26]: 
+            - generic [ref=e27]: 数据统计
+        - listitem [ref=e28]:
+          - link " 订单查询" [ref=e29] [cursor=pointer]:
+            - /url: /query/bookings
+            - generic [ref=e30]: 
+            - generic [ref=e31]: 订单查询
+        - listitem [ref=e32]: 前台业务
+        - listitem [ref=e33]:
+          - link " 住宿登记" [ref=e34] [cursor=pointer]:
+            - /url: /frontdesk/checkin
+            - generic [ref=e35]: 
+            - generic [ref=e36]: 住宿登记
+        - listitem [ref=e37]:
+          - link " 宿费提醒" [ref=e38] [cursor=pointer]:
+            - /url: /frontdesk/reminders
+            - generic [ref=e39]: 
+            - generic [ref=e40]: 宿费提醒
+        - listitem [ref=e41]:
+          - link " 挂账管理" [ref=e42] [cursor=pointer]:
+            - /url: /credits/
+            - generic [ref=e43]: 
+            - generic [ref=e44]: 挂账管理
+        - listitem [ref=e45]: 系统管理
+        - listitem [ref=e46]:
+          - link " 操作员管理" [ref=e47] [cursor=pointer]:
+            - /url: /admin/users
+            - generic [ref=e48]: 
+            - generic [ref=e49]: 操作员管理
+        - listitem [ref=e50]:
+          - link " 角色权限" [ref=e51] [cursor=pointer]:
+            - /url: /admin/roles
+            - generic [ref=e52]: 
+            - generic [ref=e53]: 角色权限
+        - listitem [ref=e54]:
+          - link " 系统设置" [ref=e55] [cursor=pointer]:
+            - /url: /admin/settings
+            - generic [ref=e56]: 
+            - generic [ref=e57]: 系统设置
+    - generic [ref=e59]:
+      - generic [ref=e61]: 
+      - generic [ref=e62]:
+        - generic [ref=e63]: 系统管理员
+        - generic [ref=e64]: 管理员
+  - generic [ref=e65]:
+    - banner [ref=e66]:
+      - generic [ref=e67]:
+        - button "" [ref=e68] [cursor=pointer]:
+          - generic [ref=e69]: 
+        - generic [ref=e70]:
+          - generic [ref=e71]:
+            - generic [ref=e72]: 
+            - text: 2026-06-07 23:25:57
+          - generic [ref=e73]:
+            - link " 系统管理员" [ref=e74] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e75]: 
+              - generic [ref=e76]: 系统管理员
+            - text: 
+    - main [ref=e78]:
+      - heading " 订单管理" [level=3] [ref=e79]:
+        - generic [ref=e80]: 
+        - text: 订单管理
+      - generic [ref=e81]:
+        - generic [ref=e82]: 
+        - paragraph [ref=e83]: 暂无订单
+        - link "去预订客房" [ref=e84] [cursor=pointer]:
+          - /url: /rooms/

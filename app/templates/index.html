@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+{% block title %}控制台 - 酒店预订系统{% endblock %}
+
+{% block content %}
+<div class="section-heading">
+    <div>
+        <h4>控制台</h4>
+        <span class="text-muted" style="font-size:0.82rem;">今日新增 {{ stats.today_orders }} 单</span>
+    </div>
+</div>
+
+<!-- 统计卡片行 -->
+<div class="row g-3 mb-4">
+    <div class="col-6 col-lg-3">
+        <div class="stat-card">
+            <div class="card-body">
+                <div class="stat-icon">
+                    <i class="bi bi-currency-yen"></i>
+                </div>
+                <div class="stat-value">&yen;{{ '%.0f'|format(stats.total_revenue) }}</div>
+                <div class="stat-label">总营收</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3">
+        <div class="stat-card">
+            <div class="card-body">
+                <div class="stat-icon">
+                    <i class="bi bi-receipt"></i>
+                </div>
+                <div class="stat-value">{{ stats.total_orders }}</div>
+                <div class="stat-label">总订单数</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3">
+        <div class="stat-card">
+            <div class="card-body">
+                <div class="stat-icon">
+                    <i class="bi bi-calendar-plus"></i>
+                </div>
+                <div class="stat-value">{{ stats.today_orders }}</div>
+                <div class="stat-label">今日新增</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3">
+        <div class="stat-card">
+            <div class="card-body">
+                <div class="stat-icon">
+                    <i class="bi bi-exclamation-triangle"></i>
+                </div>
+                <div class="stat-value">{{ stats.unpaid_credits }}</div>
+                <div class="stat-label">未还挂账</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- 房间状态概览 -->
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h6><i class="bi bi-door-open me-2"></i>房间概览</h6>
+            </div>
+            <div class="card-body">
+                {% set total = stats.total_rooms if stats.total_rooms > 0 else 1 %}
+                {% set maint = stats.total_rooms - stats.available_rooms - stats.occupied_rooms %}
+                <div class="d-flex justify-content-between align-items-end mb-2">
+                    <span class="stat-item-label">空闲</span>
+                    <span class="stat-item-value">{{ stats.available_rooms }}</span>
+                </div>
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-sec" style="width:{{ (stats.available_rooms / total) * 100 }}%"></div>
+                </div>
+                <div class="d-flex justify-content-between align-items-end mb-2">
+                    <span class="stat-item-label">已入住</span>
+                    <span class="stat-item-value">{{ stats.occupied_rooms }}</span>
+                </div>
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-dim" style="width:{{ (stats.occupied_rooms / total) * 100 }}%"></div>
+                </div>
+                <div class="d-flex justify-content-between align-items-end mb-2">
+                    <span class="stat-item-label">维护中</span>
+                    <span class="stat-item-value">{{ maint }}</span>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar bg-mid" style="width:{{ (maint / total) * 100 }}%"></div>
+                </div>
+                <div class="text-center pt-2 border-top">
+                    <span class="text-muted" style="font-size:0.78rem;">总房间数</span>
+                    <strong class="stat-total">{{ stats.total_rooms }}</strong>
+                    <span class="text-muted" style="font-size:0.78rem;">间</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 订单状态 -->
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h6><i class="bi bi-bar-chart me-2"></i>订单状态</h6>
+            </div>
+            <div class="card-body">
+                <div class="row text-center g-3">
+                    <div class="col-6">
+                        <div class="stat-box">
+                            <div class="stat-box-value">{{ stats.confirmed_orders }}</div>
+                            <div class="stat-box-label">已确认</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-box">
+                            <div class="stat-box-value">{{ stats.completed_orders }}</div>
+                            <div class="stat-box-label">已完成</div>
+                        </div>
+                    </div>
+                </div>
+                {% if stats.total_orders > 0 %}
+                {% set total_orders = stats.total_orders if stats.total_orders > 0 else 1 %}
+                <div class="mt-4 pt-3 border-top">
+                    <div class="d-flex justify-content-between align-items-end mb-2">
+                        <span class="stat-item-label">完成率</span>
+                        <span class="stat-rate">{{ '%.1f'|format((stats.completed_orders / total_orders) * 100) }}%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-sec" style="width:{{ (stats.completed_orders / total_orders) * 100 }}%"></div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- 系统概况 -->
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h6><i class="bi bi-info-circle me-2"></i>系统概况</h6>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2">
+                        <span class="sys-item"><i class="bi bi-people me-2"></i>操作员</span>
+                        <strong>{{ stats.total_users }}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2">
+                        <span class="sys-item"><i class="bi bi-shield me-2"></i>角色</span>
+                        <strong>{{ stats.total_roles }}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2">
+                        <span class="sys-item"><i class="bi bi-tag me-2"></i>房型</span>
+                        <strong>{{ types|length }}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2">
+                        <span class="sys-item"><i class="bi bi-exclamation-triangle me-2"></i>未还挂账</span>
+                        <strong>{{ stats.unpaid_credits }}</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 最近订单 -->
+<div class="card mt-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h6><i class="bi bi-clock-history me-2"></i>最近订单</h6>
+        <a href="{{ url_for('booking.booking_list') }}" class="btn btn-sm btn-outline-primary">查看全部</a>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>订单ID</th>
+                        <th>客户</th>
+                        <th>房间</th>
+                        <th>入住时间</th>
+                        <th>费用</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in recent_orders %}
+                    <tr>
+                        <td><strong>#{{ order.id }}</strong></td>
+                        <td>{{ order.customer_name }}</td>
+                        <td>{{ order.room.room_num if order.room else '-' }}</td>
+                        <td style="font-size:0.82rem;">{{ order.check_in.strftime('%m-%d %H:%M') }}</td>
+                        <td class="fw-bold">&yen;{{ '%.0f'|format(order.total_fee) }}</td>
+                        <td>
+                            {% if order.order_status == 'confirmed' %}
+                            <span class="badge bg-primary">已确认</span>
+                            {% elif order.order_status == 'completed' %}
+                            <span class="badge bg-success">已完成</span>
+                            {% elif order.order_status == 'cancelled' %}
+                            <span class="badge bg-secondary">已取消</span>
+                            {% else %}
+                            <span class="badge bg-warning text-dark">待确认</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="6" class="text-center text-muted py-4">暂无订单记录</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
