@@ -47,32 +47,6 @@ def permission_required(permission):
     return decorator
 
 
-def _seed_admin():
-    """首次启动时自动创建管理员账号（如果数据库为空）"""
-    from app.models import Role, User
-    if User.query.first() is not None:
-        return  # 已有用户，跳过
-
-    import json
-    # 创建管理员角色（拥有所有权限）
-    all_perms = [
-        'user:manage', 'role:manage', 'room:view', 'room:manage',
-        'room_type:manage', 'order:view', 'order:create', 'order:cancel',
-        'order:checkin', 'order:checkout', 'credit:view', 'credit:manage',
-        'stats:view', 'review:view', 'review:manage',
-    ]
-    admin_role = Role(role_name='管理员', permissions=json.dumps(all_perms))
-    db.session.add(admin_role)
-    db.session.flush()
-
-    # 创建默认管理员
-    admin = User(username='admin', name='管理员', role_id=admin_role.id)
-    admin.password = 'admin123'
-    db.session.add(admin)
-    db.session.commit()
-    print('✅ 已创建默认管理员: admin / admin123')
-
-
 def create_app():
     """创建并配置 Flask 应用（应用工厂模式）"""
     app = Flask(__name__)
@@ -120,10 +94,9 @@ def create_app():
     # 导入模型，确保迁移脚本能发现所有模型
     from app import models  # noqa: F401
 
-    # SQLite 自动建表 + 初始化管理员账号
-    with app.app_context():
-        db.create_all()
-        _seed_admin()
+    # 注册 CLI 命令（flask seed）
+    from app.commands import register_commands
+    register_commands(app)
 
     # 注入权限检查函数到模板全局上下文
     @app.context_processor
